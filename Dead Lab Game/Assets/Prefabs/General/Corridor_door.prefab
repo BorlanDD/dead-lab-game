@@ -164,7 +164,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1533304660787302}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 3.15}
+  m_LocalPosition: {x: -15.507946, y: -0.9349146, z: 9.714075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4701488830987348}
@@ -513,8 +513,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1533304660787302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8240f9ad78f3fa84697fae5413501bc3, type: 3}
+  m_Script: {fileID: 11500000, guid: 26c1ae92de2f70d459e77d5f9838430f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openDoor: {fileID: 8300000, guid: 20c86808613111348953cd6d9e2da0f9, type: 3}
-  closeDoor: {fileID: 8300000, guid: f4e7b88e60519414f87a42383d6f7bd0, type: 3}
+  openDoor: {fileID: 8300000, guid: 6145b124fe35c4441ba036836ea9ea19, type: 3}
+  closeDoor: {fileID: 8300000, guid: 6c9c5e788af3b3e4da604887ebaf97e8, type: 3}

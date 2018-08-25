@@ -51,6 +51,7 @@ public class Flashlight : MonoBehaviour {
 	public float minRange = 0.4f;
 
 
+
     // Use this for initialization
     void Start () {
 		BatteryLevel = 1.0f;
@@ -98,9 +99,9 @@ public class Flashlight : MonoBehaviour {
 			}
 			BatteryLevel -= value;
 		}
-		if (BatteryLevel >= minRange) {
-			_spotlight.range = BatteryLevel * maxRange;
-		}
+
+
+		_spotlight.intensity = BatteryLevel + 0.6f;
 
 		if (BatteryLevel <= criticalLevel && !IsLowBattery && Active) {
 			isBlinked = true;
