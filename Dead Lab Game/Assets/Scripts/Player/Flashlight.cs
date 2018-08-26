@@ -78,8 +78,6 @@ public class Flashlight : MonoBehaviour {
 				}
 			}
 		}
-
-		//UserInterface.GetInstance().ChangeBatteryLevel(BatteryLevel);
 	}
 
 	private bool ChangeBatteryLevel(Status status, float value) {
