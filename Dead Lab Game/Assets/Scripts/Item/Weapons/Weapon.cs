@@ -32,6 +32,7 @@ public class Weapon : Item
     protected Animator animator;
 
     public GameObject magazin;
+    public Transform MagazinPos;
 
     public Type weaponType { get; protected set; }
     public int slot;
@@ -58,6 +59,9 @@ public class Weapon : Item
     private bool makeBurstShoot;
 
     protected float afterAutomaticShotDelay;
+
+    protected float dissipateAutomaticStartThrough;
+    protected float dissipateAutomaticTimeLeft;
 
 
     public override void OnAwake()
@@ -138,7 +142,7 @@ public class Weapon : Item
     private ShootingMode shotMode;
     public void Fire()
     {
-        if (bulletCounts == 0 || currentShootingMode == ShootingMode.Locked || lockedShoot
+        if (bulletCounts <= 0 || currentShootingMode == ShootingMode.Locked || lockedShoot
          || (currentShootingMode == ShootingMode.Single && singleShootLock))
         {
             return;
@@ -160,9 +164,17 @@ public class Weapon : Item
             else if (currentShootingMode == ShootingMode.Automatic)
             {
                 MakeShoot();
-                if (!Player.GetInstance().animator.GetBool(itemName + "_" + AUTOMATIC_FIRE))
+                if (dissipateAutomaticTimeLeft >= dissipateAutomaticStartThrough)
                 {
-                    Player.GetInstance().animator.SetBool(itemName + "_" + AUTOMATIC_FIRE, true);
+                    if (!Player.GetInstance().animator.GetBool(itemName + "_" + AUTOMATIC_FIRE))
+                    {
+                        Player.GetInstance().animator.SetBool(itemName + "_" + AUTOMATIC_FIRE, true);
+                    }
+                }
+                else
+                {
+                    animator.SetTrigger("SingleFire");
+                    dissipateAutomaticTimeLeft += Time.deltaTime;
                 }
             }
         }
@@ -171,7 +183,7 @@ public class Weapon : Item
 
     public void StopShooting()
     {
-        if (availableShootingModes.Contains(ShootingMode.Automatic) &&  Player.GetInstance().animator.GetBool(itemName + "_" + AUTOMATIC_FIRE))
+        if (availableShootingModes.Contains(ShootingMode.Automatic) && Player.GetInstance().animator.GetBool(itemName + "_" + AUTOMATIC_FIRE))
         {
             Player.GetInstance().animator.SetBool(itemName + "_" + AUTOMATIC_FIRE, false);
         }
@@ -179,6 +191,11 @@ public class Weapon : Item
         if (singleShootLock)
         {
             singleShootLock = false;
+        }
+
+        if (dissipateAutomaticTimeLeft != 0)
+        {
+            dissipateAutomaticTimeLeft = 0;
         }
     }
 
@@ -200,11 +217,12 @@ public class Weapon : Item
         bulletCounts--;
 
         //UserInterface.GetInstance().bulletCounteUpdate(bulletCounts);
-        WeaponUI.GetInstance().BulletCountUpdate(bulletCounts);
+        //WeaponUI.GetInstance().BulletCountUpdate(bulletCounts);
 
         if (bulletCounts <= 0)
         {
             Player.GetInstance().ReloadWeapon();
+            StopShooting();
         }
 
         shotMode = ShootingMode.Locked;
@@ -246,7 +264,10 @@ public class Weapon : Item
     public void Reload()
     {
         bulletCounts = maxbulletCounts;
-        WeaponUI.GetInstance().BulletCountUpdate(bulletCounts);
+        magazin.transform.position += new Vector3(0f, 0f, 0f);
+        magazin.transform.SetParent(MagazinPos);
+        magazin.transform.rotation = new Quaternion(0, 0, 0, 0);
+        // WeaponUI.GetInstance().BulletCountUpdate(bulletCounts);
         //UserInterface.GetInstance().bulletCounteUpdate(bulletCounts);
     }
 

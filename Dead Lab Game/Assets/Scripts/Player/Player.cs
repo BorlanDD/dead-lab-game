@@ -129,13 +129,15 @@ public class Player : MonoBehaviour
     public Transform automatHandPosition;
 
     public Transform pistolHandPosition;
-    public Transform glock18MagPos;
+
+    public bool Reloading;
 
     void Awake()
     {
         // animator = GetComponent<Animator>();
         usingWeapon = null;
         player = this;
+        Reloading = false;
     }
     public static Player GetInstance()
     {
@@ -223,12 +225,13 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        settingWeapon = true;
 
         if (weapon == null)
         {
             return;
         }
+
+        settingWeapon = true;
         if (usingWeapon != null)
         {
             lastWeapon = usingWeapon;
@@ -251,8 +254,8 @@ public class Player : MonoBehaviour
         weapon.transform.rotation = new Quaternion(0, 0, 0, 0);
         usingWeapon = weapon;
         //UserInterface.GetInstance().bulletCounteUpdate(usingWeapon.bulletCounts);
-        WeaponUI.GetInstance().UpdateSprite(weapon);
-        WeaponUI.GetInstance().BulletCountUpdate(usingWeapon.bulletCounts);
+        //WeaponUI.GetInstance().UpdateSprite(weapon);
+        //WeaponUI.GetInstance().BulletCountUpdate(usingWeapon.bulletCounts);
 
         animator.SetTrigger(weapon.itemName + EQUIP_ANIMATION);
     }
@@ -292,15 +295,17 @@ public class Player : MonoBehaviour
 
     public void ReloadWeapon()
     {
-        if (usingWeapon == null || !usingWeapon.NeedToReload())
+        if (usingWeapon == null || !usingWeapon.NeedToReload() || Reloading)
         {
             return;
         }
+        Reloading = true;
         animator.SetTrigger(usingWeapon.itemName + "_Reload");
     }
 
     public void ReloadedWeapon()
     {
         usingWeapon.Reload();
+        Reloading = false;
     }
 }

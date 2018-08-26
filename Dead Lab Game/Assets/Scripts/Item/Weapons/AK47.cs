@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AK47 : Weapon
 {
+
+    public static string WEAPON_NAME = "AK-47";
     public override void OnAwake()
     {
         base.OnAwake();
@@ -13,6 +15,7 @@ public class AK47 : Weapon
         availableShootingModes.Add(ShootingMode.Single);
         availableShootingModes.Add(ShootingMode.Burst);
         availableShootingModes.Add(ShootingMode.Automatic);
+        dissipateAutomaticStartThrough = 0.0005f;
 
         afterSingleDelay = 0.2f;
 		afterAutomaticDelay = 0.075f;
