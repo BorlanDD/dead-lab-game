@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private AudioClip soundFirstLeg;
     [SerializeField] private AudioClip soundSecondLeg;
+    [SerializeField] private AudioClip fartSound;
     private AudioSource audioSource;
 
     public Status CurrentStatus { get; set; }
@@ -36,8 +37,16 @@ public class Player : MonoBehaviour
 
     private float eps = 0.0001f;
 
+    private bool farted = false;
+
     void FixedUpdate()
     {
+
+        if (!Generator.GetInstance().enabled && !farted) {
+            audioSource.PlayOneShot(fartSound);
+            farted = true;
+        }
+
         currentDistance += Vector3.Distance(prevPositionPlayer, transform.position);
         if (currentDistance > prevDistance + eps)
         {
@@ -129,13 +138,15 @@ public class Player : MonoBehaviour
     public Transform automatHandPosition;
 
     public Transform pistolHandPosition;
-    public Transform glock18MagPos;
+
+    public bool Reloading;
 
     void Awake()
     {
         // animator = GetComponent<Animator>();
         usingWeapon = null;
         player = this;
+        Reloading = false;
     }
     public static Player GetInstance()
     {
@@ -223,12 +234,13 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        settingWeapon = true;
 
         if (weapon == null)
         {
             return;
         }
+
+        settingWeapon = true;
         if (usingWeapon != null)
         {
             lastWeapon = usingWeapon;
@@ -262,6 +274,7 @@ public class Player : MonoBehaviour
         if (usingWeapon != null)
         {
             usingWeapon.Fire();
+            WeaponUI.GetInstance().BulletCountUpdate(usingWeapon.bulletCounts);
         }
     }
 
@@ -270,6 +283,7 @@ public class Player : MonoBehaviour
         if (usingWeapon != null)
         {
             usingWeapon.StopShooting();
+            WeaponUI.GetInstance().BulletCountUpdate(usingWeapon.bulletCounts);
         }
     }
 
@@ -292,15 +306,19 @@ public class Player : MonoBehaviour
 
     public void ReloadWeapon()
     {
-        if (usingWeapon == null || !usingWeapon.NeedToReload())
+        if (usingWeapon == null || !usingWeapon.NeedToReload() || Reloading)
         {
             return;
         }
+        Reloading = true;
         animator.SetTrigger(usingWeapon.itemName + "_Reload");
+        
     }
 
     public void ReloadedWeapon()
     {
         usingWeapon.Reload();
+        Reloading = false;
+        WeaponUI.GetInstance().BulletCountUpdate(usingWeapon.bulletCounts);
     }
 }

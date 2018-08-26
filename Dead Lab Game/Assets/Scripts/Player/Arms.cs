@@ -7,6 +7,9 @@ public class Arms : MonoBehaviour
 
     public Player player;
 
+    public Transform glock18MagPos;
+    public Transform ak47MagPos;
+
     public void TakeOffWeapon()
     {
         player.TakeOffWeapon();
@@ -38,9 +41,13 @@ public class Arms : MonoBehaviour
         {
             if (weapon.itemName.Equals(Glock18.WEAPON_NAME))
             {
-                weapon.magazin.transform.position = player.glock18MagPos.position;
-                weapon.magazin.transform.SetParent(player.glock18MagPos);
-                Debug.Log("Set");
+                weapon.magazin.transform.position = glock18MagPos.position;
+                weapon.magazin.transform.SetParent(glock18MagPos);
+            }
+            else if (weapon.itemName.Equals(AK47.WEAPON_NAME))
+            {
+                weapon.magazin.transform.position = ak47MagPos.position;
+                weapon.magazin.transform.SetParent(ak47MagPos);
             }
         }
     }

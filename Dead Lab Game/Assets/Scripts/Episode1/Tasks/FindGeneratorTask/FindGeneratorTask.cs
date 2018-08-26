@@ -27,9 +27,8 @@ public class FindGeneratorTask : Task
             awakeTask.OnFinish();
             Destroy(awakeTask.gameObject);
         }
-        generator.LockDoors();
-        generator.SwitchOffLights();
-        generator.locked = false;
+        generator.BrokeGenerator();
+        
     }
 
     private void OnTriggerEnter(Collider other)

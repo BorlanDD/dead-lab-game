@@ -23,7 +23,7 @@ public class Glock18 : Weapon
         afterBurstDelay = 0.75f;
 
         slot = 1;
-        maxbulletCounts = 18;
+        MaxbulletCounts = 18;
         bulletCounts = 18;
         damage = 15;
     }

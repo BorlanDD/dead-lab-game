@@ -5,6 +5,20 @@ using UnityEngine;
 public class Generator : InteractionObject
 {
 
+    #region SINGLETON PATTERN
+    private static Generator instance;
+    public static Generator GetInstance()
+    {
+        return instance;
+    }
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    #endregion
+
     public GameObject[] lights;
     public DoorScript[] doors;
 
@@ -13,6 +27,7 @@ public class Generator : InteractionObject
     public Transform batteryPos;
 
     [SerializeField] protected AudioClip generatorWorkingSound;
+    [SerializeField] protected AudioClip generatorBrokenSound;
     protected AudioSource _source;
 
     public override void OnStart()
@@ -24,6 +39,23 @@ public class Generator : InteractionObject
 
         generatorBatteryId = 1;
         generatorBatteryType = ItemType.Battery;
+    }
+
+    private bool isBroken;
+    public void BrokeGenerator() {
+        _source.PlayOneShot(generatorBrokenSound);
+        isBroken = true;
+    }
+
+    void Update() {
+        if (isBroken) {
+            if (!_source.isPlaying) {
+                LockDoors();
+                SwitchOffLights();
+                locked = false;
+                enabled = false;
+            }
+        }
     }
 
     public void SwitchOnLights()

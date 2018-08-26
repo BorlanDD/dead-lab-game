@@ -24,19 +24,23 @@ public class WeaponUI : MonoBehaviour {
 	public Image glock;
 	public Text bulletCountUI;
 
+	private int maxBulletCount;
 	public void UpdateSprite(Weapon weapon) {
 		if (weapon.weaponType == Weapon.Type.Automat) {
 			ak47.enabled = true;
 			glock.enabled = false;
+			//bulletCountUI.text = weapon.bulletCounts + "/" + weapon.MaxbulletCounts;
 		} 
 		else if (weapon.weaponType == Weapon.Type.Pistol)
 		{
 			ak47.enabled = false;
 			glock.enabled = true;
+			//bulletCountUI.text = weapon.bulletCounts + "/" + weapon.MaxbulletCounts;
 		}
+		maxBulletCount = weapon.MaxbulletCounts;
 	}
 
 	public void BulletCountUpdate(int count) {
-		bulletCountUI.text = "" + count;
+		bulletCountUI.text = "" + count  + "/" + maxBulletCount;
 	}
 }
