@@ -207,6 +207,11 @@ public class Weapon : Item
     private void MakeShoot()
     {
 
+        if (bulletCounts <= 0)
+        {
+            return;
+        }
+
         Bullet bullet = BulletsPull.GetInstnace().GetBullet();
         bullet.transform.SetPositionAndRotation(spawnPoint.transform.position, spawnPoint.transform.rotation);
         bullet.gameObject.SetActive(true);

@@ -4744,15 +4744,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundFirstLeg: {fileID: 8300000, guid: 34288c01594fc1744a436586be309d33, type: 3}
   soundSecondLeg: {fileID: 8300000, guid: 6a77544c92de8114baee40647535a600, type: 3}
+  fartSound: {fileID: 8300000, guid: 854d99ba319e6e64ba033a636a3fdf7e, type: 3}
   stepLenght: 1.5
   staminaUse: 10
   staminaIdleRestore: 20
   staminaWalkRestore: 40
+  Reloading: 0
   animator: {fileID: 2137740397}
   inventory: {fileID: 426233667}
   automatHandPosition: {fileID: 786974077}
   pistolHandPosition: {fileID: 1185697104}
-  Reloading: 0
   settingWeapon: 0
 --- !u!114 &373906023
 MonoBehaviour:
@@ -19967,7 +19968,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 764da5cd857995543a06c28113d6154a, type: 3}
+  - {fileID: 2100000, guid: 0c7e620bb059da04b868c9c1b106c61a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

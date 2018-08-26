@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
 
     private bool farted = false;
 
+    public bool Reloading;
+
     void FixedUpdate()
     {
 
@@ -139,8 +141,6 @@ public class Player : MonoBehaviour
 
     public Transform pistolHandPosition;
 
-    public bool Reloading;
-
     void Awake()
     {
         // animator = GetComponent<Animator>();
@@ -230,7 +230,7 @@ public class Player : MonoBehaviour
 
     public void EquipWeapon(Weapon weapon)
     {
-        if (settingWeapon)
+        if (settingWeapon || Reloading)
         {
             return;
         }
@@ -244,6 +244,7 @@ public class Player : MonoBehaviour
         if (usingWeapon != null)
         {
             lastWeapon = usingWeapon;
+            lastWeapon.StopShooting();
             UnequipWeapon();
         }
 

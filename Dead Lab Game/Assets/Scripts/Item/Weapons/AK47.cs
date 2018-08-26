@@ -15,7 +15,7 @@ public class AK47 : Weapon
         availableShootingModes.Add(ShootingMode.Single);
         availableShootingModes.Add(ShootingMode.Burst);
         availableShootingModes.Add(ShootingMode.Automatic);
-        dissipateAutomaticStartThrough = 0.0005f;
+        dissipateAutomaticStartThrough = 0.00005f;
 
         afterSingleDelay = 0.2f;
 		afterAutomaticDelay = 0.075f;
