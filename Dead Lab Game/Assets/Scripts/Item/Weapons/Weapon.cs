@@ -269,11 +269,12 @@ public class Weapon : Item
     public void Reload()
     {
         bulletCounts = MaxbulletCounts;
-        magazin.transform.position += new Vector3(0f, 0f, 0f);
+        magazin.SetActive(false);
         magazin.transform.SetParent(MagazinPos);
+        magazin.transform.localPosition = new Vector3(0f, 0f, 0f);
+        magazin.transform.localScale = new Vector3(1f, 1f, 1f);
+        magazin.SetActive(true);
         magazin.transform.rotation = new Quaternion(0, 0, 0, 0);
-        // WeaponUI.GetInstance().BulletCountUpdate(bulletCounts);
-        //UserInterface.GetInstance().bulletCounteUpdate(bulletCounts);
     }
 
     public bool NeedToReload()

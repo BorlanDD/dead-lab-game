@@ -202,6 +202,7 @@ public class Player : MonoBehaviour
         }
         usingWeapon = null;
         animator.SetTrigger(lastWeapon.itemName + UNEQUIP_ANIMATION);
+        WeaponUI.GetInstance().UpdateSprites(usingWeapon);
     }
 
     private Weapon lastWeapon;
@@ -226,6 +227,7 @@ public class Player : MonoBehaviour
 
         usingWeapon.gameObject.SetActive(true);
         settingWeapon = false;
+        WeaponUI.GetInstance().UpdateSprites(usingWeapon);
     }
 
     public void EquipWeapon(Weapon weapon)
@@ -263,10 +265,7 @@ public class Player : MonoBehaviour
         weapon.transform.position = handPos.transform.position;
         weapon.transform.rotation = new Quaternion(0, 0, 0, 0);
         usingWeapon = weapon;
-        //UserInterface.GetInstance().bulletCounteUpdate(usingWeapon.bulletCounts);
-        WeaponUI.GetInstance().UpdateSprite(weapon);
-        WeaponUI.GetInstance().BulletCountUpdate(usingWeapon.bulletCounts);
-
+        WeaponUI.GetInstance().UpdateSprites(weapon);
         animator.SetTrigger(weapon.itemName + EQUIP_ANIMATION);
     }
 
@@ -275,7 +274,7 @@ public class Player : MonoBehaviour
         if (usingWeapon != null)
         {
             usingWeapon.Fire();
-            WeaponUI.GetInstance().BulletCountUpdate(usingWeapon.bulletCounts);
+            WeaponUI.GetInstance().UpdateSprites(usingWeapon);
         }
     }
 
@@ -284,7 +283,7 @@ public class Player : MonoBehaviour
         if (usingWeapon != null)
         {
             usingWeapon.StopShooting();
-            WeaponUI.GetInstance().BulletCountUpdate(usingWeapon.bulletCounts);
+            WeaponUI.GetInstance().UpdateSprites(usingWeapon);
         }
     }
 
@@ -320,6 +319,6 @@ public class Player : MonoBehaviour
     {
         usingWeapon.Reload();
         Reloading = false;
-        WeaponUI.GetInstance().BulletCountUpdate(usingWeapon.bulletCounts);
+        WeaponUI.GetInstance().UpdateSprites(usingWeapon);
     }
 }
