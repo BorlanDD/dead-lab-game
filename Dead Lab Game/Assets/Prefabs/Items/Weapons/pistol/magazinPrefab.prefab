@@ -24,11 +24,7 @@ GameObject:
   - component: {fileID: 95710653463567404}
   - component: {fileID: 65832583958524570}
   - component: {fileID: 114899267016520840}
-<<<<<<< HEAD
-  m_Layer: 0
-=======
   m_Layer: 9
->>>>>>> cfd5fef588192a89c13e8f01f0dea9320609e195
   m_Name: magazinPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
