@@ -71,6 +71,8 @@ public class Weapon : Item
     protected float dissipateAutomaticStartThrough;
     protected float dissipateAutomaticTimeLeft;
 
+    protected IList<Magazine> magazines;
+
 
     public override void OnAwake()
     {
@@ -287,15 +289,29 @@ public class Weapon : Item
     public void Reload()
     {
         int delta = MaxbulletCounts - bulletCounts;
-        if (bulletCountsLeft >= delta)
+        for (int i = 0; i < magazines.Count; i++)
         {
-            bulletCountsLeft -= delta;
-            bulletCounts = MaxbulletCounts;
-        }
-        else 
-        {
-            bulletCounts += bulletCountsLeft;
-            bulletCountsLeft = 0;
+            if (magazines[i].bulletCount >= delta)
+            {
+                bulletCounts += delta;
+                magazines[i].bulletCount -= delta;
+                bulletCountsLeft -= delta;
+                break;
+            }
+            else 
+            {
+                bulletCounts += magazines[i].bulletCount;
+                bulletCountsLeft -= magazines[i].bulletCount;
+                delta -= magazines[i].bulletCount;
+                magazines[i].bulletCount = 0;
+            }
+
+            if (magazines[i].bulletCount == 0)
+            {
+                Player.GetInstance().inventory.RemoveItem(magazines[i]);
+                Destroy(magazines[i].gameObject);
+                magazines.Remove(magazines[i]);
+            }
         }
 
         magazin.SetActive(false);
@@ -325,7 +341,14 @@ public class Weapon : Item
 
     public void UpdateBullets()
     {
-        bulletCountsLeft = WeaponUtils.BUlletsLeft(this);
+        magazines = WeaponUtils.BUlletsLeft(this);
+        bulletCountsLeft = 0;
+
+        for (int i = 0; i < magazines.Count; i++)
+        {
+            bulletCountsLeft += magazines[i].bulletCount;
+        }
+
         if (Player.GetInstance().usingWeapon == this)
         {
             WeaponUI.GetInstance().UpdateSprites(this);

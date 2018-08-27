@@ -59,6 +59,7 @@ public class Inventory : MonoBehaviour
         item.transform.SetParent(transform);
         item.gameObject.SetActive(false);
         item.locked = true;
+        Debug.Log("added");
     }
 
     public void RemoveItem(Item item)

@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 95710653463567404}
   - component: {fileID: 65832583958524570}
   - component: {fileID: 114899267016520840}
-  m_Layer: 0
-  m_Name: magazin (1)
+  m_Layer: 9
+  m_Name: magazinPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1674314285659786}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.2912732, y: 1.2741857, z: 1.0343984}
