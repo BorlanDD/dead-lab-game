@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(AudioSource))]
 public class Weapon : Item
 {
 
     public static string SINGLE_FIRE = "Fire_Single";
     public static string BURST_FIRE = "Fire_Burst";
     public static string AUTOMATIC_FIRE = "Fire_Automatic";
+
+    [SerializeField] private AudioClip soundShot;
+    [SerializeField] private AudioSource audioSource;
 
     public enum ShootingMode
     {
@@ -67,6 +72,7 @@ public class Weapon : Item
     public override void OnAwake()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         type = ItemType.Weapon;
         availableShootingModes = new List<ShootingMode>();
@@ -212,6 +218,7 @@ public class Weapon : Item
             return;
         }
 
+        audioSource.PlayOneShot(soundShot);
         Bullet bullet = BulletsPull.GetInstnace().GetBullet();
         bullet.transform.SetPositionAndRotation(spawnPoint.transform.position, spawnPoint.transform.rotation);
         bullet.gameObject.SetActive(true);
