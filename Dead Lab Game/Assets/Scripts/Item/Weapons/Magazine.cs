@@ -19,7 +19,7 @@ public class Magazine : Item {
 		Player player = Player.GetInstance();
 		Weapon weapon = player.usingWeapon;
 
-		if (weapon == null)
+		if (weapon != null)
 		{
 			weapon.UpdateBullets();
 		}

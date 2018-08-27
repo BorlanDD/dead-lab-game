@@ -286,7 +286,18 @@ public class Weapon : Item
 
     public void Reload()
     {
-        bulletCounts = MaxbulletCounts;
+        int delta = MaxbulletCounts - bulletCounts;
+        if (bulletCountsLeft >= delta)
+        {
+            bulletCountsLeft -= delta;
+            bulletCounts = MaxbulletCounts;
+        }
+        else 
+        {
+            bulletCounts += bulletCountsLeft;
+            bulletCountsLeft = 0;
+        }
+
         magazin.SetActive(false);
         magazin.transform.SetParent(MagazinPos);
         magazin.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -297,7 +308,7 @@ public class Weapon : Item
 
     public bool NeedToReload()
     {
-        if (bulletCounts < MaxbulletCounts)
+        if (bulletCounts < MaxbulletCounts && bulletCountsLeft > 0)
         {
             return true;
         }

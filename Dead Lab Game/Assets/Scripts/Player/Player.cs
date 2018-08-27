@@ -210,6 +210,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
+        StopShooting();
         usingWeapon = null;
         animator.SetTrigger(lastWeapon.itemName + UNEQUIP_ANIMATION);
         WeaponUI.GetInstance().UpdateSprites(usingWeapon);
