@@ -14,6 +14,10 @@ public class Healer : Item {
 
 	protected bool used;
 
+	public bool IsUsed() {
+		return used;
+	}
+
 	public override void OnAwake()
 	{
 		id = 10;
@@ -21,6 +25,7 @@ public class Healer : Item {
 		effectPeriodTime = 1;
 		effectCount = 25;
 		healthCountPerPeriod = 0.02f;
+		type = ItemType.Healer;
 	}
 
 	public override void OnStart()
@@ -38,6 +43,8 @@ public class Healer : Item {
 			
 			if (effectTimeLeft >= effectPeriodTime && effectCountLeft < effectCount)
 			{
+
+				HealerUI.GetInstance().healerLevel.fillAmount = (effectCount - effectCountLeft) * 1.0f / effectCount;
 				player.IsHealing = true;
 				effectCountLeft++;
 				if (player.Health < 1.0f)
@@ -51,6 +58,7 @@ public class Healer : Item {
 
 				if (effectCountLeft >= effectCount)
 				{
+					
 					player.IsHealing = false;
 					Destroy(gameObject);
 				}

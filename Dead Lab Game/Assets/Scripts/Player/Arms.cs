@@ -62,10 +62,12 @@ public class Arms : MonoBehaviour
         player.healer.gameObject.SetActive(true);
     }
 
+
+    
     public void UsedHealer()
     {
         player.healer.Use();
-        Debug.Break();
+        //Debug.Break();
     }
 
     public void EquipPreviousWeapon()
