@@ -171,7 +171,6 @@ public class Weapon : Item
             return;
         }
 
-        Player player = Player.GetInstance();
         if (animator != null)
         {
             lockedShoot = true;
@@ -319,6 +318,6 @@ public class Weapon : Item
         if (Player.GetInstance().usingWeapon == this)
         {
             WeaponUI.GetInstance().UpdateSprites(this);
-        }
+        }   
     }
 }

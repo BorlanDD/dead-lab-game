@@ -148,6 +148,8 @@ public class Player : MonoBehaviour
 
     public Healer healer;
 
+    public bool IsHealing {get; set;}
+
     void Awake()
     {
         // animator = GetComponent<Animator>();
@@ -200,7 +202,7 @@ public class Player : MonoBehaviour
 
     public void UnequipWeapon()
     {
-        if (lastWeapon == null && usingWeapon != null)
+        if (usingWeapon != null)
         {
             lastWeapon = usingWeapon;
         }

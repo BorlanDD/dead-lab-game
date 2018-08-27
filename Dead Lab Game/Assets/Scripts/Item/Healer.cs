@@ -17,7 +17,7 @@ public class Healer : Item {
 	public override void OnAwake()
 	{
 		id = 10;
-		used = false;
+		//used = false;
 		effectPeriodTime = 1;
 		effectCount = 25;
 		healthCountPerPeriod = 0.02f;
@@ -35,10 +35,11 @@ public class Healer : Item {
 		base.OnUpdate();
 		if (used)
 		{
+			
 			if (effectTimeLeft >= effectPeriodTime && effectCountLeft < effectCount)
 			{
+				player.IsHealing = true;
 				effectCountLeft++;
-				Debug.Log("healing");
 				if (player.Health < 1.0f)
 				{
 					player.Health += healthCountPerPeriod;
@@ -50,6 +51,7 @@ public class Healer : Item {
 
 				if (effectCountLeft >= effectCount)
 				{
+					player.IsHealing = false;
 					Destroy(gameObject);
 				}
 				effectTimeLeft = 0;

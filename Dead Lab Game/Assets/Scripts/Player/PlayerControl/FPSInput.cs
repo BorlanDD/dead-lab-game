@@ -138,6 +138,7 @@ public class FPSInput : MonoBehaviour
         {
             player.ChangeFireMode(1);
         }
+
     }
 
     private void Interaction()
