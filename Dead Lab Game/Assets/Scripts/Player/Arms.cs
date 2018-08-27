@@ -65,6 +65,7 @@ public class Arms : MonoBehaviour
     public void UsedHealer()
     {
         player.healer.Use();
+        Debug.Break();
     }
 
     public void EquipPreviousWeapon()

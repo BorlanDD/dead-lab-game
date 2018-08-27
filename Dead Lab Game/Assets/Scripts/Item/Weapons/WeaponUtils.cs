@@ -21,4 +21,22 @@ public class WeaponUtils
 
         return null;
     }
+
+    public static int BUlletsLeft(Weapon weapon)
+    {
+        Inventory inventory =  Player.GetInstance().inventory;
+        IList<Item> magazines = inventory.GetItemByType(ItemType.Magazine);
+
+        int count = 0;
+        Magazine magazine;
+        for (int i = 0; i < magazines.Count; i++)
+        {
+            magazine = (Magazine)magazines[i];
+            if (magazine.usingWeaponId == weapon.id)
+            {
+                count += magazine.bulletCount;
+            }
+        }
+        return count;
+    }
 }

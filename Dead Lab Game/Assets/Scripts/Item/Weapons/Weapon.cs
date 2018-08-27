@@ -43,6 +43,8 @@ public class Weapon : Item
     public Type weaponType { get; protected set; }
     public int slot;
     public int MaxbulletCounts { get; set; }
+
+    public int bulletCountsLeft { get; protected set; }
     public int bulletCounts { get; protected set; }
     public int damage { get; protected set; }
 
@@ -243,16 +245,11 @@ public class Weapon : Item
         bulletRB.velocity = spawnPoint.TransformDirection(new Vector3(0, 0, bulletSpeed));
         bulletCounts--;
 
-        //UserInterface.GetInstance().bulletCounteUpdate(bulletCounts);
-        //WeaponUI.GetInstance().BulletCountUpdate(bulletCounts);
-
         if (bulletCounts <= 0)
         {
             Player.GetInstance().ReloadWeapon();
             StopShooting();
         }
-
-        //shotMode = ShootingMode.Locked;
     }
 
     public void SetShootingMode(ShootingMode mode)
@@ -313,6 +310,15 @@ public class Weapon : Item
         if (currentShootingMode != ShootingMode.Locked)
         {
             lockedShoot = false;
+        }
+    }
+
+    public void UpdateBullets()
+    {
+        bulletCountsLeft = WeaponUtils.BUlletsLeft(this);
+        if (Player.GetInstance().usingWeapon == this)
+        {
+            WeaponUI.GetInstance().UpdateSprites(this);
         }
     }
 }

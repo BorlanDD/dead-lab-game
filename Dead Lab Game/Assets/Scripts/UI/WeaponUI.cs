@@ -44,8 +44,6 @@ public class WeaponUI : MonoBehaviour {
 	#endregion
 
 	public Text warning;
-
-	private int maxBulletCount;
 	public void UpdateSprites(Weapon weapon) {
 		if (weapon == null) {
 			gun.enabled = false;
@@ -95,7 +93,7 @@ public class WeaponUI : MonoBehaviour {
 			gunBulletCounts.enabled = false;
 
 			rifleBulletCounts.enabled = true;
-			rifleBulletCounts.text = "" + weapon.bulletCounts  + "/" + weapon.MaxbulletCounts;
+			rifleBulletCounts.text = "" + weapon.bulletCounts  + "/" + weapon.bulletCountsLeft;
 		} 
 		else if (weapon.weaponType == Weapon.Type.Pistol)
 		{
@@ -123,7 +121,7 @@ public class WeaponUI : MonoBehaviour {
 			rifleBulletCounts.enabled = false;
 
 			gunBulletCounts.enabled = true;
-			gunBulletCounts.text = "" + weapon.bulletCounts  + "/" + weapon.MaxbulletCounts;
+			gunBulletCounts.text = "" + weapon.bulletCounts  + "/" + weapon.bulletCountsLeft;
 		}
 	}
 

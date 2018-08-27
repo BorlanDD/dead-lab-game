@@ -10,6 +10,7 @@ public enum ItemType
     Ammo,
     Weapon,
     First_Aid_Kit,
+    Magazine,
     Battery
 
 }

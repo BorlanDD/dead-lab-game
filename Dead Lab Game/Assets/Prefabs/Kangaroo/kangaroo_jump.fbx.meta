@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 961810b9fae63b9438f2977077f7a328
+guid: 0d35ef108396e554996e31d24839b679
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -94,9 +94,7 @@ ModelImporter:
     2100000: No Name
     4300000: Sphere.002
     7400000: metarig|metarigAction.003
-    7400002: metarig|metarigAction
     9500000: //RootNode
-    11100000: //RootNode
     13700000: Sphere.002
   externalObjects: {}
   materials:
@@ -109,7 +107,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: Sphere.002
+    motionNodeName: metarig/spine.001
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -118,7 +116,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -172,7 +170,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2

@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
         usingWeapon = null;
         player = this;
         Reloading = false;
-        Health = 1.0f;
+        Health = 0.1f;
     }
     public static Player GetInstance()
     {
@@ -223,7 +223,6 @@ public class Player : MonoBehaviour
 
         lastWeapon.gameObject.SetActive(false);
         inventory.AddItem(lastWeapon);
-        lastWeapon = null;
     }
 
     public void SetWeapon()
@@ -235,6 +234,8 @@ public class Player : MonoBehaviour
 
         usingWeapon.gameObject.SetActive(true);
         settingWeapon = false;
+        
+        usingWeapon.UpdateBullets();
         WeaponUI.GetInstance().UpdateSprites(usingWeapon);
     }
 
@@ -307,6 +308,8 @@ public class Player : MonoBehaviour
             return;
         }
 
+        StopShooting();
+
         if (direction == 1)
         {
             usingWeapon.SetNextMode();
@@ -323,6 +326,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
+        StopShooting();
         Reloading = true;
         animator.SetTrigger(usingWeapon.itemName + "_Reload");
 
