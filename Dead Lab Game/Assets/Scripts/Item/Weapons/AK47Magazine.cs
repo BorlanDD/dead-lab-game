@@ -8,7 +8,7 @@ public class AK47Magazine : Magazine {
 	{
 		base.OnAwake();
 		id = 12;
-		usingWeaponId = 5;
+		usingWeaponId = 4;
 		bulletCount = 30;
 	}
 }
