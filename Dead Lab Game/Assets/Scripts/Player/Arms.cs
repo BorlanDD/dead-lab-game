@@ -71,7 +71,7 @@ public class Arms : MonoBehaviour
     {
         if (player.healer != null)
         {
-            player.healer.gameObject.SetActive(false);
+            player.healer.gameObject.GetComponent<MeshRenderer>().enabled = false;
             player.healer = null;
         }
         player.EquipWeapon(player.beforeHealerWeapon);

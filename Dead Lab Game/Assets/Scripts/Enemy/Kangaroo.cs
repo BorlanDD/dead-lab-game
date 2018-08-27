@@ -13,4 +13,6 @@ public class Kangaroo : Enemy {
 	protected override void OnUpdate () {
 		
 	}
+
+	
 }

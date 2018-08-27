@@ -56,7 +56,6 @@ public class Generator : InteractionObject
                 SwitchOffLights();
                 locked = false;
                 enabled = false;
-                _source.PlayOneShot(horror);
             }
         }
     }

@@ -148,13 +148,15 @@ public class Player : MonoBehaviour
 
     public Healer healer;
 
+    public bool IsHealing {get; set;}
+
     void Awake()
     {
         // animator = GetComponent<Animator>();
         usingWeapon = null;
         player = this;
         Reloading = false;
-        Health = 1.0f;
+        Health = 0.3f;
     }
     public static Player GetInstance()
     {

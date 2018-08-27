@@ -169,7 +169,6 @@ public class Weapon : Item
             return;
         }
 
-        Player player = Player.GetInstance();
         if (animator != null)
         {
             lockedShoot = true;
