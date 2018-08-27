@@ -223,6 +223,7 @@ public class Player : MonoBehaviour
 
         lastWeapon.gameObject.SetActive(false);
         inventory.AddItem(lastWeapon);
+        lastWeapon = null;
     }
 
     public void SetWeapon()

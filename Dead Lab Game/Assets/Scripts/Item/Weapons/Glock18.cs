@@ -9,6 +9,7 @@ public class Glock18 : Weapon
     public override void OnAwake()
     {
         base.OnAwake();
+        id = 5;
         itemName = "Glock-18";
         weaponType = Type.Pistol;
 

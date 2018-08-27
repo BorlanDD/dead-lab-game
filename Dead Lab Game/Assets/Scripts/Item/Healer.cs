@@ -27,6 +27,7 @@ public class Healer : Item {
 	{
 		base.OnStart();
 		player = Player.GetInstance();
+		itemName = "Healer";
 	}
 	
 	public override void OnUpdate()

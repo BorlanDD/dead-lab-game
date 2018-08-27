@@ -14,6 +14,7 @@ public class WeaponUtils
 			weapon = (Weapon)weapons[i];
             if (weapon.slot == slot)
             {
+                Player.GetInstance().inventory.GetItem(weapon.id);
 				return weapon;
             }
         }
