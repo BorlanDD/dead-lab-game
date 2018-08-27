@@ -74,7 +74,6 @@ public class Arms : MonoBehaviour
             player.healer.gameObject.SetActive(false);
             player.healer = null;
         }
-        Debug.Log("Equip: " + player.beforeHealerWeapon);
         player.EquipWeapon(player.beforeHealerWeapon);
     }
 }

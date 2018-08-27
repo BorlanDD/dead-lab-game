@@ -9,6 +9,7 @@ public class AK47 : Weapon
     public override void OnAwake()
     {
         base.OnAwake();
+        id = 4;
         itemName = "AK-47";
         weaponType = Type.Automat;
 

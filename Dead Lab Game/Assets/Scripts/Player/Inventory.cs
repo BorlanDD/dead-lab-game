@@ -30,7 +30,9 @@ public class Inventory : MonoBehaviour
         {
             if (id == items[i].id && type == items[i].type)
             {
-                return items[i];
+                Item item = items[i];
+                RemoveItem(item);
+                return item;
             }
         }
         return null;
@@ -39,10 +41,12 @@ public class Inventory : MonoBehaviour
     public IList<Item> GetItemByType(ItemType type)
     {
         IList<Item> itemsByType = new List<Item>();
+        Debug.Log("Items size: " + items.Count);
         for (int i = 0; i < items.Count; i++)
         {
             if (type == items[i].type)
             {
+                Debug.Log("Items size: " + items[i].itemName);
                 itemsByType.Add(items[i]);
             }
         }
@@ -51,6 +55,7 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Item item)
     {
+        Debug.Log("Set: " + item.itemName);
         items.Add(item);
         item.transform.SetParent(transform);
         item.gameObject.SetActive(false);
