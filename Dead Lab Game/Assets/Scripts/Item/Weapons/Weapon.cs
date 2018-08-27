@@ -12,6 +12,7 @@ public class Weapon : Item
     public static string AUTOMATIC_FIRE = "Fire_Automatic";
 
     [SerializeField] private AudioClip soundShot;
+    [SerializeField] private AudioClip soundClick;
     [SerializeField] private AudioSource audioSource;
 
     public enum ShootingMode
@@ -41,7 +42,7 @@ public class Weapon : Item
 
     public Type weaponType { get; protected set; }
     public int slot;
-    public int MaxbulletCounts {get; set;}
+    public int MaxbulletCounts { get; set; }
     public int bulletCounts { get; protected set; }
     public int damage { get; protected set; }
 
@@ -151,6 +152,20 @@ public class Weapon : Item
         if (bulletCounts <= 0 || currentShootingMode == ShootingMode.Locked || lockedShoot
          || (currentShootingMode == ShootingMode.Single && singleShootLock))
         {
+
+            if (currentShootingMode == ShootingMode.Locked)
+            {
+                WeaponUI.GetInstance().IsBlinked = true;
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(soundClick);
+                }
+
+            }
+            else
+            {
+                WeaponUI.GetInstance().IsBlinked = false;
+            }
             return;
         }
 
@@ -237,7 +252,7 @@ public class Weapon : Item
             StopShooting();
         }
 
-        shotMode = ShootingMode.Locked;
+        //shotMode = ShootingMode.Locked;
     }
 
     public void SetShootingMode(ShootingMode mode)

@@ -283,7 +283,7 @@ public class Player : MonoBehaviour
 
     public void Fire()
     {
-        if (usingWeapon != null)
+        if (usingWeapon != null && !Reloading)
         {
             usingWeapon.Fire();
             WeaponUI.GetInstance().UpdateSprites(usingWeapon);

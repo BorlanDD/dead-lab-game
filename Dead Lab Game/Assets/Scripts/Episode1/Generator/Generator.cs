@@ -51,8 +51,8 @@ public class Generator : InteractionObject
 
     void Update() {
         if (isBroken) {
+            LockDoors();
             if (!_source.isPlaying) {
-                LockDoors();
                 SwitchOffLights();
                 locked = false;
                 enabled = false;

@@ -43,6 +43,8 @@ public class WeaponUI : MonoBehaviour {
 	public Text gunBulletCounts;
 	#endregion
 
+	public Text warning;
+
 	private int maxBulletCount;
 	public void UpdateSprites(Weapon weapon) {
 		if (weapon == null) {
@@ -124,4 +126,38 @@ public class WeaponUI : MonoBehaviour {
 			gunBulletCounts.text = "" + weapon.bulletCounts  + "/" + weapon.MaxbulletCounts;
 		}
 	}
+
+	
+	public bool IsBlinked {get; set;}
+
+	private void Update() {
+		if (totalCount >= 6) {
+			totalCount = 0;
+			IsBlinked = false;
+		}
+
+		if (IsBlinked) {
+			BlinkWarning();
+		} else {
+			totalCount = 0;
+			warning.enabled = false;
+		}
+	}
+
+
+
+	private float current = 0f;
+    private float delayBetweenBlinks = 1f;
+    private float incrementStep = 0.1f;
+	private int totalCount = 0;
+    public void BlinkWarning()
+    {
+        if (current >= delayBetweenBlinks)
+        {
+            warning.enabled = !warning.enabled;
+			totalCount++;
+            current = 0;
+        }
+        current += incrementStep;
+    }
 }
