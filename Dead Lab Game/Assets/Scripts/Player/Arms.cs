@@ -10,6 +10,8 @@ public class Arms : MonoBehaviour
     public Transform glock18MagPos;
     public Transform ak47MagPos;
 
+    public Transform healerPos;
+
     public void TakeOffWeapon()
     {
         player.TakeOffWeapon();
@@ -41,14 +43,38 @@ public class Arms : MonoBehaviour
         {
             if (weapon.itemName.Equals(Glock18.WEAPON_NAME))
             {
-                weapon.magazin.transform.position = glock18MagPos.position;
                 weapon.magazin.transform.SetParent(glock18MagPos);
+                weapon.magazin.transform.localPosition = new Vector3(0, 0, 0);
             }
             else if (weapon.itemName.Equals(AK47.WEAPON_NAME))
             {
-                weapon.magazin.transform.position = ak47MagPos.position;
                 weapon.magazin.transform.SetParent(ak47MagPos);
+                weapon.magazin.transform.localPosition = new Vector3(0, 0, 0);
             }
         }
+    }
+
+    public void SetHealer()
+    {
+        player.healer.transform.SetParent(healerPos);
+        player.healer.transform.localPosition = new Vector3(0, 0, 0);
+        player.healer.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        player.healer.gameObject.SetActive(true);
+    }
+
+    public void UsedHealer()
+    {
+        player.healer.Use();
+    }
+
+    public void EquipPreviousWeapon()
+    {
+        if (player.healer != null)
+        {
+            player.healer.gameObject.SetActive(false);
+            player.healer = null;
+        }
+        Debug.Log("Equip: " + player.beforeHealerWeapon);
+        player.EquipWeapon(player.beforeHealerWeapon);
     }
 }

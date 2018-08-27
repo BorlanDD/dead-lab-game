@@ -33796,7 +33796,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1
+  - time: 0.8333333
     functionName: ReloadedWeapon
     data: 
     objectReferenceParameter: {fileID: 0}

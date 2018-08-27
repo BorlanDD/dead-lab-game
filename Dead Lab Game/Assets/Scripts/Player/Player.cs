@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    public Arms arms;
+
     #region Borland's code
     public enum Status
     {
@@ -126,20 +129,24 @@ public class Player : MonoBehaviour
     public static string UNEQUIP_ANIMATION = "_Unequip";
 
     public Animator animator;
-
-    private int health;
     public float stamina { get; set; }
     public float staminaCriticalLevel { get; private set; }
     public bool tired { get; private set; }
 
     public Weapon usingWeapon { get; private set; }
 
+    public Weapon beforeHealerWeapon;
+
     private static Player player;
+
+    public float Health;
     public Inventory inventory;
 
     public Transform automatHandPosition;
 
     public Transform pistolHandPosition;
+
+    public Healer healer;
 
     void Awake()
     {
@@ -147,6 +154,7 @@ public class Player : MonoBehaviour
         usingWeapon = null;
         player = this;
         Reloading = false;
+        Health = 1.0f;
     }
     public static Player GetInstance()
     {
@@ -215,7 +223,6 @@ public class Player : MonoBehaviour
 
         lastWeapon.gameObject.SetActive(false);
         inventory.AddItem(lastWeapon);
-        lastWeapon = null;
     }
 
     public void SetWeapon()
@@ -269,6 +276,11 @@ public class Player : MonoBehaviour
         animator.SetTrigger(weapon.itemName + EQUIP_ANIMATION);
     }
 
+    public void EquipPreviousWeapon()
+    {
+        EquipWeapon(lastWeapon);
+    }
+
     public void Fire()
     {
         if (usingWeapon != null)
@@ -320,5 +332,22 @@ public class Player : MonoBehaviour
         usingWeapon.Reload();
         Reloading = false;
         WeaponUI.GetInstance().UpdateSprites(usingWeapon);
+    }
+
+    public void UseHealer(Healer healer)
+    {
+        if (healer == null)
+        {
+            return;
+        }
+        if (usingWeapon != null)
+        {
+            beforeHealerWeapon = usingWeapon;
+            Debug.Log("setted");
+            UnequipWeapon();
+        }
+        this.healer = healer;
+
+        animator.SetTrigger("Use_Healer");
     }
 }

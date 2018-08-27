@@ -103,6 +103,11 @@ public class FPSInput : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            player.UseHealer((Healer)player.inventory.GetItem(10));
+        }
+
         if (Input.GetAxis("Fire1") > 0)
         {
             player.Fire();
@@ -118,6 +123,11 @@ public class FPSInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             player.ReloadWeapon();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            player.EquipPreviousWeapon();
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
