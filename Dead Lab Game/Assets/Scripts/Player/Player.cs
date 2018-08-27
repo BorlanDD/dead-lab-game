@@ -324,6 +324,7 @@ public class Player : MonoBehaviour
         }
         Reloading = true;
         animator.SetTrigger(usingWeapon.itemName + "_Reload");
+
         
     }
 

@@ -28,6 +28,8 @@ public class Generator : InteractionObject
 
     [SerializeField] protected AudioClip generatorWorkingSound;
     [SerializeField] protected AudioClip generatorBrokenSound;
+
+    [SerializeField] protected AudioClip horror;
     protected AudioSource _source;
 
     public override void OnStart()
@@ -54,6 +56,7 @@ public class Generator : InteractionObject
                 SwitchOffLights();
                 locked = false;
                 enabled = false;
+                _source.PlayOneShot(horror);
             }
         }
     }
