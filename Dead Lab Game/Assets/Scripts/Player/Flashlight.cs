@@ -29,6 +29,7 @@ public class Flashlight : MonoBehaviour {
 	public float BatteryLevel {get; set;}
 	public bool Active {get; set;}
 	public bool IsLowBattery {get; set;}
+	private float maxRange;
 
 	public bool RaysActive
     {
@@ -56,6 +57,7 @@ public class Flashlight : MonoBehaviour {
 		BatteryLevel = 1.0f;
 		Active = true;
 		_spotlight = GetComponent<Light>();
+		maxRange = _spotlight.range;
 		audioSource = GetComponent<AudioSource>();
 	}
 

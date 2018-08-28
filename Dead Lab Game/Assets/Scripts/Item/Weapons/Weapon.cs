@@ -156,12 +156,6 @@ public class Weapon : Item
         if (bulletCounts <= 0 || currentShootingMode == ShootingMode.Locked || lockedShoot
          || (currentShootingMode == ShootingMode.Single && singleShootLock))
         {
-            if (bulletCounts <= 0) {
-                if (!audioSource.isPlaying) {
-                    audioSource.PlayOneShot(soundClick);
-                }
-                
-            }
 
             if (currentShootingMode == ShootingMode.Locked)
             {
@@ -297,12 +291,16 @@ public class Weapon : Item
         int delta = MaxbulletCounts - bulletCounts;
         for (int i = 0; i < magazines.Count; i++)
         {
+            if (bulletCounts == MaxbulletCounts)
+            {
+                return;
+            }
+
             if (magazines[i].bulletCount >= delta)
             {
                 bulletCounts += delta;
                 magazines[i].bulletCount -= delta;
                 bulletCountsLeft -= delta;
-                break;
             }
             else 
             {
@@ -311,6 +309,8 @@ public class Weapon : Item
                 delta -= magazines[i].bulletCount;
                 magazines[i].bulletCount = 0;
             }
+
+            Debug.Log(magazines[i].bulletCount);
 
             if (magazines[i].bulletCount == 0)
             {
