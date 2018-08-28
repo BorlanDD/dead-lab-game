@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip soundFirstLeg;
     [SerializeField] private AudioClip soundSecondLeg;
     [SerializeField] private AudioClip fartSound;
+
+    [SerializeField] private AudioClip breath1;
+    [SerializeField] private AudioClip breath2;
     private AudioSource audioSource;
 
     public Status CurrentStatus { get; set; }
@@ -44,6 +47,9 @@ public class Player : MonoBehaviour
 
     public bool Reloading;
 
+    private float delay = 2f;
+    private bool firstBreath = false;
+
     void FixedUpdate()
     {
 
@@ -53,6 +59,7 @@ public class Player : MonoBehaviour
         }
 
         currentDistance += Vector3.Distance(prevPositionPlayer, transform.position);
+        Debug.Log(currentDistance);
         if (currentDistance > prevDistance + eps)
         {
             IsInMotion = true;
@@ -72,6 +79,23 @@ public class Player : MonoBehaviour
         else if (CurrentStatus == Status.Stand)
         {
             animator.SetBool("Walk", false);
+        }
+
+        
+        if (tired) {
+            if (delay >= 3f) {
+                if (firstBreath) {
+                    audioSource.PlayOneShot(breath1);
+                    firstBreath = false;
+                }
+                else {
+                    audioSource.PlayOneShot(breath2);
+                    firstBreath = true;
+                }
+                
+                delay = 0f;
+            }
+            delay += Time.deltaTime;
         }
 
 

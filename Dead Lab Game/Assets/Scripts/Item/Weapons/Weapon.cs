@@ -156,6 +156,12 @@ public class Weapon : Item
         if (bulletCounts <= 0 || currentShootingMode == ShootingMode.Locked || lockedShoot
          || (currentShootingMode == ShootingMode.Single && singleShootLock))
         {
+            if (bulletCounts <= 0) {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(soundClick);
+                }
+            }
 
             if (currentShootingMode == ShootingMode.Locked)
             {
