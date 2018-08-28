@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Kangaroo : Enemy {
 
@@ -34,6 +35,9 @@ public class Kangaroo : Enemy {
 			head.material = defaultMat;
 			body.material = defaultMat;
 		}
+
+		GetComponent<NavMeshAgent>().SetDestination(Player.GetInstance().transform.position);
+		transform.LookAt(Player.GetInstance().transform);
 	}
 
 	

@@ -20,8 +20,10 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip soundSecondLeg;
     [SerializeField] private AudioClip fartSound;
 
-    [SerializeField] private AudioClip breath1;
-    [SerializeField] private AudioClip breath2;
+    [SerializeField] private AudioClip breath;
+    [SerializeField] private AudioClip breathRun;
+    [SerializeField] private AudioClip exhalation;
+    [SerializeField] private AudioClip exhalationRun;
     private AudioSource audioSource;
 
     public Status CurrentStatus { get; set; }
@@ -47,13 +49,11 @@ public class Player : MonoBehaviour
 
     public bool Reloading;
 
-    private float delay = 2f;
-    private bool firstBreath = false;
-
     void FixedUpdate()
     {
 
-        if (!Generator.GetInstance().enabled && !farted) {
+        if (!Generator.GetInstance().enabled && !farted)
+        {
             audioSource.PlayOneShot(fartSound);
             farted = true;
         }
@@ -81,21 +81,23 @@ public class Player : MonoBehaviour
             animator.SetBool("Walk", false);
         }
 
-        
-        if (tired) {
-            if (delay >= 3f) {
-                if (firstBreath) {
-                    audioSource.PlayOneShot(breath1);
-                    firstBreath = false;
+
+        if (tired)
+        {
+            if (!_audioBreath.isPlaying)
+            {
+                if (_audioBreath.clip == breath)
+                {
+                    _audioBreath.clip = exhalation;
+                    _audioBreath.Play();
                 }
-                else {
-                    audioSource.PlayOneShot(breath2);
-                    firstBreath = true;
+                else
+                {
+                    _audioBreath.clip = breath;
+                    _audioBreath.Play();
                 }
-                
-                delay = 0f;
             }
-            delay += Time.deltaTime;
+
         }
 
 
@@ -133,11 +135,13 @@ public class Player : MonoBehaviour
         {
             if (isFirstLeg)
             {
+                audioSource.PlayOneShot(breathRun);
                 audioSource.PlayOneShot(soundFirstLeg);
                 isFirstLeg = false;
             }
             else
             {
+                audioSource.PlayOneShot(exhalationRun);
                 audioSource.PlayOneShot(soundSecondLeg);
                 isFirstLeg = true;
             }
@@ -172,7 +176,10 @@ public class Player : MonoBehaviour
 
     public Healer healer;
 
-    public bool IsHealing {get; set;}
+    public GameObject breathGameObj;
+    private AudioSource _audioBreath;
+
+    public bool IsHealing { get; set; }
 
     void Awake()
     {
@@ -192,6 +199,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         audioSource = GetComponentInParent<AudioSource>();
+        _audioBreath = breathGameObj.GetComponent<AudioSource>();
         prevPositionPlayer = transform.position;
         stamina = 1f;
         staminaCriticalLevel = 0.3f;
@@ -261,7 +269,7 @@ public class Player : MonoBehaviour
 
         usingWeapon.gameObject.SetActive(true);
         settingWeapon = false;
-        
+
         usingWeapon.UpdateBullets();
         WeaponUI.GetInstance().UpdateSprites(usingWeapon);
     }
@@ -357,7 +365,7 @@ public class Player : MonoBehaviour
         Reloading = true;
         animator.SetTrigger(usingWeapon.itemName + "_Reload");
 
-        
+
     }
 
     public void ReloadedWeapon()

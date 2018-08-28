@@ -13,6 +13,6 @@ public class EnemyAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		GetComponent<NavMeshAgent>().SetDestination(Player.GetInstance().transform.position);
+		//GetComponent<NavMeshAgent>().SetDestination(Player.GetInstance().transform.position);
 	}
 }
