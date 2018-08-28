@@ -59,7 +59,6 @@ public class Player : MonoBehaviour
         }
 
         currentDistance += Vector3.Distance(prevPositionPlayer, transform.position);
-        Debug.Log(currentDistance);
         if (currentDistance > prevDistance + eps)
         {
             IsInMotion = true;
@@ -361,9 +360,8 @@ public class Player : MonoBehaviour
         }
         StopShooting();
         Reloading = true;
+        usingWeapon.audioSource.PlayOneShot(usingWeapon.soundReloading);
         animator.SetTrigger(usingWeapon.itemName + "_Reload");
-
-
     }
 
     public void ReloadedWeapon()
