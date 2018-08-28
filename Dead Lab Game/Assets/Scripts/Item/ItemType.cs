@@ -11,6 +11,7 @@ public enum ItemType
     Weapon,
     First_Aid_Kit,
     Magazine,
-    Battery
+    Battery,
+    Healer
 
 }
