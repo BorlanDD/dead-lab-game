@@ -300,7 +300,7 @@ public class Weapon : Item
         {
             if (bulletCounts == MaxbulletCounts)
             {
-                return;
+                break;
             }
 
             if (magazines[i].bulletCount >= delta)
