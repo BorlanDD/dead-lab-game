@@ -5,8 +5,9 @@ using UnityEngine.AI;
 
 public class Kangaroo : Enemy {
 
-	private MeshRenderer meshRenderer;
+	public NavMeshAgent navMeshAgent;
 
+	private MeshRenderer meshRenderer;
 	public SkinnedMeshRenderer head;
 	public SkinnedMeshRenderer body;
 
@@ -18,6 +19,7 @@ public class Kangaroo : Enemy {
 		base.OnStart();
 		health = 100;
 		meshRenderer = GetComponent<MeshRenderer>();
+		navMeshAgent = GetComponent<NavMeshAgent>();
 	}
 	
 	// Update is called once per frame
@@ -36,8 +38,8 @@ public class Kangaroo : Enemy {
 			body.material = defaultMat;
 		}
 
-		GetComponent<NavMeshAgent>().SetDestination(Player.GetInstance().transform.position);
-		transform.LookAt(Player.GetInstance().transform);
+		navMeshAgent.SetDestination(Player.GetInstance().transform.position);
+		transform.LookAt(navMeshAgent.nextPosition);
 	}
 
 	
