@@ -33,7 +33,6 @@ public class HealerUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		int count = _player.inventory.GetItemByType(ItemType.Healer).Count;
-		Debug.Log(count);
 		if (count > 0) {
 			healer.SetActive(true);
 			healerCounts.text = count.ToString();
