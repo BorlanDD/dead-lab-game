@@ -13,7 +13,8 @@ public class Weapon : Item
 
     [SerializeField] private AudioClip soundShot;
     [SerializeField] private AudioClip soundClick;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] public AudioClip soundReloading;
+    [SerializeField] public AudioSource audioSource;
 
     public enum ShootingMode
     {
@@ -316,7 +317,7 @@ public class Weapon : Item
                 magazines[i].bulletCount = 0;
             }
 
-            Debug.Log(magazines[i].bulletCount);
+            //Debug.Log(magazines[i].bulletCount);
 
             if (magazines[i].bulletCount == 0)
             {
@@ -325,7 +326,7 @@ public class Weapon : Item
                 magazines.Remove(magazines[i]);
             }
         }
-
+        
         magazin.SetActive(false);
         magazin.transform.SetParent(MagazinPos);
         magazin.transform.localPosition = new Vector3(0f, 0f, 0f);
