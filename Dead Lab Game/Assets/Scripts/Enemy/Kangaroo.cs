@@ -14,12 +14,24 @@ public class Kangaroo : Enemy {
 	public Material defaultMat;
 	public Material trancparencyMat;
 
+
+	public float lookRadius = 10f;
+	private Player player;
+
+	public FieldOfView eyes;
+
+	private void OnDrawGizmosSelected() {
+		Gizmos.color = Color.red;
+
+	}
+
 	// Use this for initialization
 	protected override void OnStart () {
 		base.OnStart();
 		health = 100;
 		meshRenderer = GetComponent<MeshRenderer>();
 		navMeshAgent = GetComponent<NavMeshAgent>();
+		player = Player.GetInstance();
 	}
 	
 	// Update is called once per frame
@@ -38,8 +50,43 @@ public class Kangaroo : Enemy {
 			body.material = defaultMat;
 		}
 
-		navMeshAgent.SetDestination(Player.GetInstance().transform.position);
-		transform.LookAt(navMeshAgent.nextPosition);
+
+		if (eyes.IsSeePlayer()) {
+			RunForPlayer();
+		} 
+		else 
+		{
+			Debug.Log("Потерял из виду!");
+			if (lastPlayerPosition != Vector3.zero) {
+				Debug.Log("Иду к последней точке");
+				CheckLastPlayerPosition();
+			}
+		}
+		
+	}
+
+	private Vector3 lastPlayerPosition;
+	private void RunForPlayer() {
+		navMeshAgent.SetDestination(player.transform.position);
+		transform.LookAt(player.transform.position);
+		lastPlayerPosition = player.transform.position;
+	}
+
+	private void CheckLastPlayerPosition() {
+		if (transform.position != lastPlayerPosition) {
+			navMeshAgent.SetDestination(lastPlayerPosition);
+			transform.LookAt(lastPlayerPosition);
+		}
+		else
+		{
+			lastPlayerPosition = Vector3.zero;
+		}
+		
+		
+	}
+
+	private void Patrol() {
+
 	}
 
 	
