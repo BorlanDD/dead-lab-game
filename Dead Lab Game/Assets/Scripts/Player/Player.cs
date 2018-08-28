@@ -135,13 +135,11 @@ public class Player : MonoBehaviour
         {
             if (isFirstLeg)
             {
-                audioSource.PlayOneShot(breathRun);
                 audioSource.PlayOneShot(soundFirstLeg);
                 isFirstLeg = false;
             }
             else
             {
-                audioSource.PlayOneShot(exhalationRun);
                 audioSource.PlayOneShot(soundSecondLeg);
                 isFirstLeg = true;
             }
