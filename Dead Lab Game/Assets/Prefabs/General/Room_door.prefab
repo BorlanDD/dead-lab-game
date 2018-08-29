@@ -40,8 +40,8 @@ GameObject:
   - component: {fileID: 65910956184653332}
   - component: {fileID: 95060484598784488}
   - component: {fileID: 82063678258175526}
-  - component: {fileID: 114394305714394242}
-  m_Layer: 0
+  - component: {fileID: 114726702742061136}
+  m_Layer: 11
   m_Name: Room_door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114394305714394242
+--- !u!114 &114726702742061136
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -567,8 +567,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1400229495308368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15ea9814ed94adc448f4ed17dcb0c0ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 47bd6b64b4795794890dc9d3f227b245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openDoor: {fileID: 8300000, guid: 76bd7423ce65a9840bc7c6f8e48826af, type: 3}
-  closeDoor: {fileID: 8300000, guid: acaee7f57c4125547939de1820d8a3c4, type: 3}
+  openDoor: {fileID: 8300000, guid: 92a1405e0e87fed4da803e2a390241cb, type: 3}
+  closeDoor: {fileID: 8300000, guid: 40f078a92b3c39b448b834cef1e124ca, type: 3}
