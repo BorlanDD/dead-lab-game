@@ -9,12 +9,17 @@ public class FindGeneratorKeyTask : Task {
 	public static FindGeneratorKeyTask GetInstance(){
 		return findGeneratorKeyTask;
 	}
-	public override void OnStart(){
+
+	public override void OnAwake()
+	{
 		findGeneratorKeyTask = this;
+	}
+
+	public override void OnTaskStart(){
 		description = "Find generator battery.";
 		type = Type.Subtask;
-
-		base.OnStart();
+		Debug.Log("Find key start");
+		base.OnTaskStart();
 	}
 	
 }

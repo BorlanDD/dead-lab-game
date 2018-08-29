@@ -27,17 +27,35 @@ public class Task : MonoBehaviour
         subtasks = new List<Task>();
 
         type = Type.Task;
+        OnAwake();
     }
+
+    public virtual void OnAwake(){}
+
+    void Start()
+    {
+        OnStart();
+    }
+
+    public virtual void OnStart(){}
+
+    void Update()
+    {
+        OnUpdate();
+    }
+
+    public virtual void OnUpdate(){}
 
     public void addSubTask(Task substask)
     {
         subtasks.Add(substask);
+        substask.OnTaskStart();
         TasksManager.GetInstance().OnTaskUpdated();
     }
 
     public string description { get; protected set; }
 
-    public virtual void OnStart()
+    public virtual void OnTaskStart()
     {
         if (type == Type.Task)
         {
@@ -45,9 +63,9 @@ public class Task : MonoBehaviour
         }
         started = true;
     }
-    public virtual void OnFinish()
+    public virtual void OnTaskFinish()
     {
-
+        TasksManager.GetInstance().FinishTask(this);
     }
 
 

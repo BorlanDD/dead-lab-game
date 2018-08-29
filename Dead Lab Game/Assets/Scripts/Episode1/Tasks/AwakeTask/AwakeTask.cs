@@ -6,23 +6,33 @@ public class AwakeTask : Task
 {
 
     private static AwakeTask awakeTask;
-    public override void OnStart()
+
+    public override void OnAwake()
+	{
+		awakeTask = this;
+	}
+    public override void OnTaskStart()
     {
-        awakeTask = this;
         description = "Understand what happen.";
-        base.OnStart();
+        base.OnTaskStart();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!started && other.gameObject.tag == "Player")
         {
-            OnStart();
+            OnTaskStart();
         }
     }
 
     public static AwakeTask GetInstance()
     {
         return awakeTask;
+    }
+
+    public override void OnTaskFinish()
+    {
+        base.OnTaskFinish();
+        Destroy(gameObject);
     }
 }

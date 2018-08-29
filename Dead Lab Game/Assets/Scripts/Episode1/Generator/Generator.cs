@@ -110,20 +110,19 @@ public class Generator : InteractionObject
             battery.gameObject.transform.SetParent(batteryPos);
             battery.gameObject.SetActive(true);
 
-            TasksManager.GetInstance().FinishTask(FindGeneratorTask.GetInstance());
+            FindGeneratorTask.GetInstance().OnTaskFinish();
             _source.loop = true;
             _source.clip = generatorWorkingSound;
             _source.Play();
         }
         else
         {
-            FindGeneratorTask fgt = (FindGeneratorTask)FindGeneratorTask.GetInstance();
+            FindGeneratorTask fgt = FindGeneratorTask.GetInstance();
             if (fgt != null)
             {
-                FindGeneratorKeyTask fgkt = GetComponent<FindGeneratorKeyTask>();
+                FindGeneratorKeyTask fgkt = FindGeneratorKeyTask.GetInstance();
                 if (!fgkt.started)
                 {
-                    fgkt.OnStart();
                     fgt.addSubTask(fgkt);
                     locked = true;
                 }

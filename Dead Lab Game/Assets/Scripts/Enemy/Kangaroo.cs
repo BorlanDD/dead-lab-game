@@ -22,7 +22,6 @@ public class Kangaroo : Enemy {
 
 	private void OnDrawGizmosSelected() {
 		Gizmos.color = Color.red;
-
 	}
 
 	// Use this for initialization
@@ -56,7 +55,6 @@ public class Kangaroo : Enemy {
 		} 
 		else 
 		{
-			Debug.Log("Потерял из виду!");
 			if (lastPlayerPosition != Vector3.zero) {
 				Debug.Log("Иду к последней точке");
 				CheckLastPlayerPosition();

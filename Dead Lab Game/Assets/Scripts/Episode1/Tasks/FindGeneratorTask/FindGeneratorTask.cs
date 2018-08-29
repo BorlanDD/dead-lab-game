@@ -14,28 +14,36 @@ public class FindGeneratorTask : Task
 
     public Generator generator;
 
-    public override void OnStart()
+    public override void OnAwake()
     {
-		findGeneratorTask = this;
+        findGeneratorTask = this;
+    }
+
+    public override void OnTaskStart()
+    {
         description = "Find and switch on energy generator.";
-        base.OnStart();
+        base.OnTaskStart();
 
         AwakeTask awakeTask = AwakeTask.GetInstance();
 
         if (awakeTask != null)
         {
-            awakeTask.OnFinish();
-            Destroy(awakeTask.gameObject);
+            awakeTask.OnTaskFinish();
         }
         generator.BrokeGenerator();
-        
+    }
+
+    public override void OnTaskFinish()
+    {
+        base.OnTaskFinish();
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!started && other.gameObject.tag == "Player")
         {
-            OnStart();
+            OnTaskStart();
         }
     }
 }

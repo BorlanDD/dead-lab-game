@@ -28,23 +28,12 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Weapon") || other.tag.Equals("Player"))
+        Enemy enemy = other.transform.GetComponentInParent<Enemy>();
+        enemy.health -= damage;
+        Debug.Log("Health: " + enemy.health);
+        if (enemy.health <= 0)
         {
-            return;
-        }
-        else if (other.tag.Contains("Enemy"))
-        {
-            if(other.tag.Contains("Head"))
-            {
-                damage *= 2;
-            }
-            Enemy enemy = other.transform.GetComponentInParent<Enemy>();
-            enemy.health -= damage;
-            Debug.Log("Health: " + enemy.health);
-            if (enemy.health <= 0)
-            {
-                enemy.Die();
-            }
+            enemy.Die();
         }
 
         ReturnToPull();
