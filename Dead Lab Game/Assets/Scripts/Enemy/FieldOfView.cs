@@ -12,20 +12,20 @@ public class FieldOfView : MonoBehaviour {
 	public LayerMask targetMask;
 	public LayerMask obstacleMask;
 	[HideInInspector]
-	public List<Transform> visibleTargets = new List<Transform>();
+	//public List<Transform> visibleTargets = new List<Transform>();
 
-	private Kangaroo _kangaroo;
+	/* private Kangaroo _kangaroo;
 
 	void Awake() {
 		_kangaroo = GetComponentInParent<Kangaroo>();
-	}
+	} */
 
 	void Update() {
 		
 	}
 
-	void FindVisibleTargets() {
-		visibleTargets.Clear();
+	public List<Kangaroo> FindVisibleTargets() {
+		List<Kangaroo> visibleTargets = new List<Kangaroo>();
 		Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
 
 		for (int i = 0; i < targetsInViewRadius.Length; i++) {
@@ -35,11 +35,13 @@ public class FieldOfView : MonoBehaviour {
 				float distToTarget = Vector3.Distance(transform.position, target.position);
 
 				if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask)) {
-					visibleTargets.Add(target);
-					_kangaroo.enabled = true;
+					visibleTargets.Add(target.gameObject.GetComponent<Kangaroo>());
+					//_kangaroo.enabled = true;
 				}
 			}
 		}
+
+		return visibleTargets;
 	}
 
 	public bool IsSeePlayer() {

@@ -28,6 +28,9 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (!other.CompareTag("Enemy")) {
+            return;
+        }
         Enemy enemy = other.transform.GetComponentInParent<Enemy>();
         enemy.health -= damage;
         Debug.Log("Health: " + enemy.health);

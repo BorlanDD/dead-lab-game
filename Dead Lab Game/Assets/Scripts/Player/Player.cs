@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
 
     public bool Reloading;
 
+    private FieldOfView eyes;
+
     void FixedUpdate()
     {
 
@@ -144,6 +146,12 @@ public class Player : MonoBehaviour
             }
             prevDistance = currentDistance = 0f;
         }
+
+        List<Kangaroo> visibleEnemies = eyes.FindVisibleTargets();
+        Debug.Log(visibleEnemies.Count);
+        foreach (Kangaroo kangaroo in visibleEnemies) {
+            kangaroo.SetInvisibility(true);
+        }
     }
 
 
@@ -181,6 +189,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         // animator = GetComponent<Animator>();
+        eyes = GetComponentInChildren<FieldOfView>();
         usingWeapon = null;
         player = this;
         Reloading = false;
