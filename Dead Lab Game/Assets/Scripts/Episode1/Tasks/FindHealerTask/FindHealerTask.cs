@@ -5,6 +5,7 @@ using UnityEngine;
 public class FindHealerTask : Task
 {
 
+    public DoorScript door;
     public static FindHealerTask findHealerTask;
     public static FindHealerTask GetInstance()
     {
@@ -33,6 +34,7 @@ public class FindHealerTask : Task
     public override void OnTaskFinish()
     {
         base.OnTaskFinish();
+        door.locked = false;
         Destroy(gameObject);
     }
 

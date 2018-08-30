@@ -84,7 +84,6 @@ public class Kangaroo : Enemy
             }
 
             currentCoolDownTime += Time.deltaTime;
-            Debug.Log(currentCoolDownTime);
             if (currentCoolDownTime >= coolDown)
             {
                 reloaded = true;
