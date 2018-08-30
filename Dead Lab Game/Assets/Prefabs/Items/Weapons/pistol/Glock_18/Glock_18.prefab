@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4453681715617904}
   - component: {fileID: 65630376730401068}
-  - component: {fileID: 114124111737947406}
   - component: {fileID: 95474773970319222}
+  - component: {fileID: 82344943029382910}
+  - component: {fileID: 114164861775821192}
   m_Layer: 9
   m_Name: Glock_18
   m_TagString: Weapon
@@ -177,7 +178,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1162120458225436}
   m_LocalRotation: {x: -1, y: -0, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: -2.522, y: 0.941, z: 4.013}
+  m_LocalPosition: {x: -30.882095, y: 0.1386436, z: -43.59371}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4341971858300082}
@@ -361,6 +362,101 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0.055754, y: -0.030277997, z: 1.0756903e-16}
+--- !u!82 &82344943029382910
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1162120458225436}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &95474773970319222
 Animator:
   serializedVersion: 3
@@ -397,7 +493,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114124111737947406
+--- !u!114 &114164861775821192
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -405,13 +501,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1162120458225436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0806aacaace44e4995eb1943c9013b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 67e4b927896a08d4a9a9aabc037e3507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Player
-  bulletPrefab: {fileID: 54314726868147566, guid: f573786f0e1b7104baea46ba389f73c8,
-    type: 2}
-  spawnPoint: {fileID: 4528732501360630}
+  soundShot: {fileID: 0}
+  soundClick: {fileID: 0}
+  soundReloading: {fileID: 0}
+  audioSource: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  magazin: {fileID: 0}
+  MagazinPos: {fileID: 0}
   slot: 0
   lockedShoot: 0
   afterBurstDelay: 0
