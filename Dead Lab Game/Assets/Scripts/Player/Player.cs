@@ -194,6 +194,7 @@ public class Player : MonoBehaviour
         player = this;
         Reloading = false;
         Health = 1f;
+        Cursor.visible = false;
     }
     public static Player GetInstance()
     {

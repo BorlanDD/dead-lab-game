@@ -93,8 +93,11 @@ public class Weapon : Item
         makeBurstShoot = false;
 
         afterAutomaticShotDelay = 0;
+
+        redPoint = RedPoint.GetInstance().transform;
     }
 
+    private Transform redPoint;
     public override void OnUpdate()
     {
         base.OnUpdate();
@@ -142,6 +145,28 @@ public class Weapon : Item
                 }
             }
         }
+
+        if (Player.GetInstance().usingWeapon == this)
+        {
+            RaycastHit hit;
+            Ray ray = new Ray(spawnPoint.position, spawnPoint.forward);
+
+
+            if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity, 1 << 13, QueryTriggerInteraction.Ignore))
+            {
+                redPoint.gameObject.SetActive(true);
+                redPoint.position = hit.point;
+                redPoint.LookAt(Player.GetInstance().transform);
+            }
+            else
+            {
+                redPoint.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            redPoint.gameObject.SetActive(false);
+        }
     }
 
     private void ResetBurstShoot()
@@ -157,7 +182,8 @@ public class Weapon : Item
         if (bulletCounts <= 0 || currentShootingMode == ShootingMode.Locked || lockedShoot
          || (currentShootingMode == ShootingMode.Single && singleShootLock))
         {
-            if (bulletCounts <= 0) {
+            if (bulletCounts <= 0)
+            {
                 if (!audioSource.isPlaying)
                 {
                     audioSource.PlayOneShot(soundClick);
@@ -309,7 +335,7 @@ public class Weapon : Item
                 magazines[i].bulletCount -= delta;
                 bulletCountsLeft -= delta;
             }
-            else 
+            else
             {
                 bulletCounts += magazines[i].bulletCount;
                 bulletCountsLeft -= magazines[i].bulletCount;
@@ -326,7 +352,7 @@ public class Weapon : Item
                 magazines.Remove(magazines[i]);
             }
         }
-        
+
         magazin.SetActive(false);
         magazin.transform.SetParent(MagazinPos);
         magazin.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -365,6 +391,6 @@ public class Weapon : Item
         if (Player.GetInstance().usingWeapon == this)
         {
             WeaponUI.GetInstance().UpdateSprites(this);
-        }   
+        }
     }
 }

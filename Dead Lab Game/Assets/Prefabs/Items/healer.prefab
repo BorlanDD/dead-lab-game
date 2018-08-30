@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 95195338718731658}
   - component: {fileID: 65271214900928274}
   - component: {fileID: 114821394821281150}
+  - component: {fileID: 65159714049165412}
   m_Layer: 9
   m_Name: healer
   m_TagString: Untagged
@@ -86,6 +87,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1485406696850302}
   m_Mesh: {fileID: 4300000, guid: d7a64609198941c48a641b90ad9afc38, type: 3}
+--- !u!65 &65159714049165412
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1485406696850302}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.046814, y: 0.046814, z: 0.424712}
+  m_Center: {x: 0, y: 0, z: -0.081906}
 --- !u!65 &65271214900928274
 BoxCollider:
   m_ObjectHideFlags: 1
