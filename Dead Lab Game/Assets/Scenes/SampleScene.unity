@@ -9528,6 +9528,11 @@ Prefab:
       propertyPath: m_Name
       value: Corridor_door (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 82578766970104244, guid: 70c5880fdebcefc4eaaea45f5f339183,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70c5880fdebcefc4eaaea45f5f339183, type: 2}
   m_IsPrefabAsset: 0
@@ -21549,7 +21554,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -29555,11 +29560,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4325724604292956, guid: 70c5880fdebcefc4eaaea45f5f339183, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.07
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4129229433750172, guid: 70c5880fdebcefc4eaaea45f5f339183, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.07
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4129229433750172, guid: 70c5880fdebcefc4eaaea45f5f339183, type: 2}
       propertyPath: m_LocalPosition.x
@@ -29573,6 +29578,11 @@ Prefab:
         type: 2}
       propertyPath: locked
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82578766970104244, guid: 70c5880fdebcefc4eaaea45f5f339183,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70c5880fdebcefc4eaaea45f5f339183, type: 2}
@@ -31867,7 +31877,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -45419,6 +45429,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 82578766970104244, guid: 70c5880fdebcefc4eaaea45f5f339183,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70c5880fdebcefc4eaaea45f5f339183, type: 2}
   m_IsPrefabAsset: 0
@@ -54610,6 +54625,11 @@ Prefab:
       propertyPath: m_Name
       value: Room_door (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 82063678258175526, guid: 4ebbc8da28052cb40a333d3f2686d550,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ebbc8da28052cb40a333d3f2686d550, type: 2}
   m_IsPrefabAsset: 0
@@ -55784,6 +55804,11 @@ Prefab:
         type: 2}
       propertyPath: locked
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82578766970104244, guid: 70c5880fdebcefc4eaaea45f5f339183,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70c5880fdebcefc4eaaea45f5f339183, type: 2}
@@ -62553,7 +62578,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -83746,7 +83771,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -83943,7 +83968,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -94616,6 +94641,11 @@ Prefab:
     - target: {fileID: 4381514057228902, guid: 70c5880fdebcefc4eaaea45f5f339183, type: 2}
       propertyPath: m_RootOrder
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 82578766970104244, guid: 70c5880fdebcefc4eaaea45f5f339183,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70c5880fdebcefc4eaaea45f5f339183, type: 2}
