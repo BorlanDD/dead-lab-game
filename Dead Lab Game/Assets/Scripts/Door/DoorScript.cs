@@ -10,10 +10,13 @@ public class DoorScript : MonoBehaviour
 
     public bool locked;
 
+    protected bool open;
+
     // Use this for initialization
     void Start()
     {
         _animator = GetComponent<Animator>();
+        open = false;
 		OnStart();
     }
 
@@ -28,16 +31,26 @@ public class DoorScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (open)
+        {
+            return;
+        }
         if (other.gameObject.tag == "Player" && !locked)
         {
+            open = true;
             OnOpen();
         }
     }
 
     void OnTriggerExit(Collider other)
     {
+        if (!open)
+        {
+            return;
+        }
         if (other.gameObject.tag == "Player" && !locked)
         {
+            open = false;
             OnClose();
         }
     }
