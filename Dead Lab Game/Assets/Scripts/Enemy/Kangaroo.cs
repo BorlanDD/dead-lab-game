@@ -24,6 +24,8 @@ public class Kangaroo : Enemy
 
     private Animator animator;
 
+    private AudioManager audioManager;
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -39,6 +41,7 @@ public class Kangaroo : Enemy
         invisibled = false;
         meshRenderer = GetComponent<MeshRenderer>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        audioManager = AudioManager.GetInstance();
         player = Player.GetInstance();
         prevKangarooPosition = transform.position;
     }
@@ -48,6 +51,7 @@ public class Kangaroo : Enemy
     private Vector3 prevKangarooPosition;
 
     private int count;
+    private bool afterChase;
     // Update is called once per frame
     protected override void OnUpdate()
     {
@@ -90,16 +94,25 @@ public class Kangaroo : Enemy
             if (Vector3.Distance(transform.position, player.transform.position) <= navMeshAgent.stoppingDistance)
             {
                 Attack();
+                audioManager.PlayBattleLoopSound();
+                afterChase = true;
             }
             else
             {
                 if (transform.position != prevKangarooPosition && HasPath())
                 {
                     RunForPlayer();
+                    audioManager.PlayBattleLoopSound();
+                    afterChase = true;
                 }
                 else
                 {
                     Patrol();
+                    if (afterChase)
+                    {
+                        audioManager.PlayBattleEndSound();
+                        afterChase = false;
+                    }
                 }
 
             }
@@ -110,16 +123,30 @@ public class Kangaroo : Enemy
             if (lastPlayerPosition != Vector3.zero && transform.position != prevKangarooPosition && HasPath())
             {
                 CheckLastPlayerPosition();
+                audioManager.PlayBattleLoopSound();
+                afterChase = true;
             }
             else
             {
                 Patrol();
                 lastPlayerPosition = Vector3.zero;
+                if (afterChase)
+                {
+                    audioManager.PlayBattleEndSound();
+                    afterChase = false;
+                }
             }
         }
 
         prevKangarooPosition = transform.position;
         shooted = false;
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        audioManager.PlayBattleEndSound();
+        afterChase = false;
     }
 
     public bool playerSee { get; set; }
@@ -143,7 +170,7 @@ public class Kangaroo : Enemy
     private float current = 0f;
     private float delay = 1f;
 
-    public bool shooted {get; set;}
+    public bool shooted { get; set; }
     private void BecomeInvisible()
     {
         if (current >= delay)
@@ -208,7 +235,8 @@ public class Kangaroo : Enemy
         MakeDamage(damage);
     }
 
-    private void MakeDamage(float damage) {
+    private void MakeDamage(float damage)
+    {
         player.GetDamage(damage * Time.deltaTime);
     }
 

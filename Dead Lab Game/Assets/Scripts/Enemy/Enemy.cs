@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnUpdate() { }
 
-    public void Die()
+    public virtual void Die()
 	{
 		Destroy(gameObject);
 	}
