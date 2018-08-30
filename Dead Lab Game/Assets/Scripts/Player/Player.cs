@@ -55,12 +55,12 @@ public class Player : MonoBehaviour
     {
         
         //Debug.Log(GameObject.FindGameObjectWithTag("NavMesh").GetComponent<UnityEngine.AI.NavMeshSurface>().)
-        if (!Generator.GetInstance().enabled && !farted)
+        /* if (!Generator.GetInstance().enabled && !farted)
         {
             audioSource.PlayOneShot(fartSound);
             farted = true;
         }
-
+ */
         currentDistance += Vector3.Distance(prevPositionPlayer, transform.position);
         if (currentDistance > prevDistance + eps)
         {
@@ -404,11 +404,14 @@ public class Player : MonoBehaviour
         }
         else {
             Die();
+            
         }
     }
 
     private void Die() {
+        AudioManager.GetInstance().PlayDeathSound();
+        transform.gameObject.SetActive(false);
         Debug.Log("Dude, you died!");
-        Debug.Break();
+        //Debug.Break();
     }
 }
