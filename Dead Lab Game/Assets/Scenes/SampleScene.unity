@@ -69998,6 +69998,8 @@ MonoBehaviour:
   eyes: {fileID: 0}
   invisibleTime: 2
   coolDown: 10
+  runningSpeed: 3.75
+  normalSpeed: 2.5
 --- !u!95 &1556912753
 Animator:
   serializedVersion: 3

@@ -133,6 +133,10 @@ public class Kangaroo : Enemy
     private float currentCoolDownTime;
     [SerializeField]
     private float coolDown = 10f;
+    [SerializeField]
+    private float runningSpeed = 3.75f;
+    [SerializeField]
+    private float normalSpeed = 2.5f;
 
     private bool reloaded = true;
 
@@ -156,7 +160,7 @@ public class Kangaroo : Enemy
     private Vector3 lastPlayerPosition;
     private void RunForPlayer()
     {
-        navMeshAgent.speed = 3.75f;
+        navMeshAgent.speed = runningSpeed;
         animator.SetBool("Walking", true);
         navMeshAgent.SetDestination(player.transform.position);
         transform.LookAt(player.transform.position);
@@ -171,7 +175,7 @@ public class Kangaroo : Enemy
 
     private void CheckLastPlayerPosition()
     {
-        navMeshAgent.speed = 3.75f;
+        navMeshAgent.speed = runningSpeed;
         if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), lastPlayerPosition) >= navMeshAgent.stoppingDistance)
         {
             animator.SetBool("Walking", true);
@@ -206,25 +210,12 @@ public class Kangaroo : Enemy
 
     private void MakeDamage(float damage) {
         player.GetDamage(damage * Time.deltaTime);
-        //Debug.Log(damage);
     }
 
-    
 
     private void Patrol()
     {
-        navMeshAgent.speed = 2.5f;
-        if (transform.position == prevKangarooPosition)
-        {
-            GoToRandomPosition();
-        }
-        prevKangarooPosition = transform.position;
-        //animator.SetTrigger("Looking");
-    }
-
-    private void RunAway()
-    {
-        navMeshAgent.speed = 4f;
+        navMeshAgent.speed = normalSpeed;
         if (transform.position == prevKangarooPosition)
         {
             GoToRandomPosition();
