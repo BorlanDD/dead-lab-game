@@ -21,16 +21,16 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource audioSource;
 
-    [SerializeField]
-    private AudioClip battleLoop;
+    [SerializeField] private AudioClip battleLoopSound;
 
-    [SerializeField]
-    private AudioClip battleEnd;
+    [SerializeField] private AudioClip battleEndSound;
+    [SerializeField] private AudioClip deathSound;
 
     public bool BattleLoopPlayed { get; set; }
 
     public bool BattleLoopPlay { get; set; }
     public bool BattleEndPlay { get; set; }
+	public bool DeathSoundPlay {get; set;}
 
 
 
@@ -45,55 +45,54 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (DeathSoundPlay) {
+			audioSource.Stop();
+			if (Play(deathSound)) {
+				DeathSoundPlay = false;
+			}
+		}
+
         if (BattleLoopPlay)
         {
-            Play(battleLoop);
+            Play(battleLoopSound);
 
         }
         else if (BattleEndPlay)
         {
-			if (Play(battleEnd)) {
-				BattleEndPlay = false;
-			}
-			
+            if (Play(battleEndSound))
+            {
+                BattleEndPlay = false;
+            }
+
         }
     }
 
-	private bool Play(AudioClip clip) {
-		if (!audioSource.isPlaying)
+    private bool Play(AudioClip clip)
+    {
+        if (!audioSource.isPlaying)
         {
             audioSource.clip = clip;
             audioSource.Play();
-			return true;
+            return true;
         }
-		return false;
-	}
+        return false;
+    }
 
 
     public void PlayBattleLoopSound()
     {
-        /* if (!audioSource.isPlaying)
-        {
-            audioSource.clip = battleLoop;
-            audioSource.Play();
-			BattleEndPlay = false;
-            BattleLoopPlay = false;
-            BattleLoopPlayed = true;
-        } */
-		BattleEndPlay = false;
-		BattleLoopPlay = true;
+        BattleEndPlay = false;
+        BattleLoopPlay = true;
     }
 
     public void PlayBattleEndSound()
     {
-        /* if (!audioSource.isPlaying)
-        {
-            audioSource.clip = battleEnd;
-            audioSource.Play();
-            BattleLoopPlayed = false;
-            BattleEndPlay = false;
-        } */
-		BattleLoopPlay = false;
-		BattleEndPlay = true;
+        BattleLoopPlay = false;
+        BattleEndPlay = true;
+    }
+
+    public void PlayDeathSound()
+    {
+		DeathSoundPlay = true;
     }
 }

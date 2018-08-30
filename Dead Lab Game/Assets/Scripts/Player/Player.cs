@@ -404,11 +404,14 @@ public class Player : MonoBehaviour
         }
         else {
             Die();
+            
         }
     }
 
     private void Die() {
+        AudioManager.GetInstance().PlayDeathSound();
+        transform.gameObject.SetActive(false);
         Debug.Log("Dude, you died!");
-        Debug.Break();
+        //Debug.Break();
     }
 }
