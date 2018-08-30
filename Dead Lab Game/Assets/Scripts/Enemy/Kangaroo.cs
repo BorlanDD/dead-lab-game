@@ -40,22 +40,21 @@ public class Kangaroo : Enemy
         meshRenderer = GetComponent<MeshRenderer>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = Player.GetInstance();
+        prevKangarooPosition = transform.position;
     }
 
+    private float walkRadius = 20f;
+    private Vector3 finalPosition;
+    private Vector3 prevKangarooPosition;
+
+    private int count;
     // Update is called once per frame
     protected override void OnUpdate()
     {
         base.OnUpdate();
 
-        /* timer += Time.deltaTime;
- 
-        if (timer >= wanderTimer) {
-            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
-            navMeshAgent.SetDestination(newPos);
-            timer = 0;
-        } */
-
-        if (invisible && !invisibled && reloaded)
+        bool isSeePlayer = eyes.IsSeePlayer();
+        if (playerSee && !invisibled && reloaded && isSeePlayer)
         {
             BecomeInvisible();
         }
@@ -70,21 +69,20 @@ public class Kangaroo : Enemy
 
                 currentInvisibleTime = 0f;
                 invisibled = false;
+                reloaded = false;
             }
         }
 
         if (!reloaded && !invisibled)
         {
-            if (currentCoolDownTime == 0)
+            if (playerSee && (currentCoolDownTime == 0 || transform.position == prevKangarooPosition) && HasPath())
             {
-                navMeshAgent.speed = 40f;
-                Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
-                navMeshAgent.SetDestination(newPos);
-
+                navMeshAgent.speed = 10f;
+                GoToRandomPosition();
             }
+            prevKangarooPosition = transform.position;
 
             currentCoolDownTime += Time.deltaTime;
-            Debug.Log(currentCoolDownTime);
             if (currentCoolDownTime >= coolDown)
             {
                 reloaded = true;
@@ -103,29 +101,35 @@ public class Kangaroo : Enemy
                 }
                 else
                 {
-                    RunForPlayer();
-                }
+                    if (transform.position != prevKangarooPosition)
+                    {
+                        RunForPlayer();
+                        prevKangarooPosition = transform.position;
+                    }
+                    else
+                    {
+                        Patrol();
+                    }
 
+                }
             }
             else
             {
-                if (lastPlayerPosition != Vector3.zero)
+
+                if (lastPlayerPosition != Vector3.zero && transform.position != prevKangarooPosition)
                 {
                     CheckLastPlayerPosition();
+                    prevKangarooPosition = transform.position;
                 }
                 else
                 {
-
+                    Patrol();
                 }
             }
         }
-
-
-
-
     }
 
-    private bool invisible;
+    public bool playerSee { get; set; }
     private bool invisibled;
     private float currentInvisibleTime;
 
@@ -155,13 +159,6 @@ public class Kangaroo : Enemy
     }
 
 
-
-    public void SetInvisibility(bool active)
-    {
-        invisible = active;
-    }
-
-
     public float wanderRadius = 20f;
     //public float wanderTimer;
     //private float timer;
@@ -181,14 +178,29 @@ public class Kangaroo : Enemy
     private Vector3 lastPlayerPosition;
     private void RunForPlayer()
     {
-        animator.SetBool("Walking", true);
-        navMeshAgent.SetDestination(player.transform.position);
-        transform.LookAt(player.transform.position);
-        lastPlayerPosition = new Vector3(player.transform.position.x, 0, player.transform.position.z);
+        if (HasPath())
+        {
+            animator.SetBool("Walking", true);
+            navMeshAgent.SetDestination(player.transform.position);
+            transform.LookAt(player.transform.position);
+            lastPlayerPosition = new Vector3(player.transform.position.x, 0, player.transform.position.z);
+        }
+        else
+        {
+            Patrol();
+        }
     }
+
+    private bool HasPath()
+    {
+        NavMeshPath path = new NavMeshPath();
+        return navMeshAgent.CalculatePath(player.transform.position, path);
+    }
+
 
     private void CheckLastPlayerPosition()
     {
+        //Debug.Log(navMeshAgent.);
         if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), lastPlayerPosition) >= navMeshAgent.stoppingDistance)
         {
             animator.SetBool("Walking", true);
@@ -201,12 +213,23 @@ public class Kangaroo : Enemy
             animator.SetBool("Walking", false);
             animator.SetTrigger("Looking");
         }
-
+        //Debug.Log(navMeshAgent.pathStatus);
 
     }
 
-    private void Patrol()
+    private void GoToRandomPosition()
     {
+        do
+        {
+            Vector3 randomDirection = Random.insideUnitSphere * walkRadius;
+            randomDirection += transform.position;
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
+            finalPosition = hit.position;
+            animator.SetBool("Walking", true);
+            navMeshAgent.SetDestination(finalPosition);
+        } while (Vector3.Distance(finalPosition, player.transform.position) <= 5);
+
 
     }
 
@@ -216,5 +239,23 @@ public class Kangaroo : Enemy
         animator.SetTrigger("Attacking");
     }
 
+    private void Patrol()
+    {
+        navMeshAgent.speed = 2f;
+        if (transform.position == prevKangarooPosition)
+        {
+            GoToRandomPosition();
+        }
+        prevKangarooPosition = transform.position;
+    }
 
+    private void RunAway()
+    {
+        navMeshAgent.speed = 4f;
+        if (transform.position == prevKangarooPosition)
+        {
+            GoToRandomPosition();
+        }
+        prevKangarooPosition = transform.position;
+    }
 }

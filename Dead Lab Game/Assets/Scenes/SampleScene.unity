@@ -14912,6 +14912,7 @@ Transform:
   - {fileID: 165660831}
   - {fileID: 508794908}
   - {fileID: 1069091750}
+  - {fileID: 1795194232}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17848,7 +17849,7 @@ GameObject:
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!114 &373906015
 MonoBehaviour:
@@ -28289,7 +28290,7 @@ GameObject:
   - component: {fileID: 615483059}
   - component: {fileID: 615483058}
   - component: {fileID: 615483057}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Room_2_Floor_Corner_Out (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31910,7 +31911,7 @@ GameObject:
   - component: {fileID: 689354107}
   - component: {fileID: 689354106}
   - component: {fileID: 689354105}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Room_2_Floor_Corner_Out (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38289,7 +38290,7 @@ GameObject:
   - component: {fileID: 858247788}
   - component: {fileID: 858247787}
   - component: {fileID: 858247786}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Room_2_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39733,7 +39734,7 @@ GameObject:
   - component: {fileID: 882015306}
   - component: {fileID: 882015305}
   - component: {fileID: 882015304}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Room_2_Floor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42951,7 +42952,7 @@ GameObject:
   - component: {fileID: 953658015}
   - component: {fileID: 953658014}
   - component: {fileID: 953658013}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Room_2_Floor_Corner_Out (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44560,7 +44561,7 @@ GameObject:
   - component: {fileID: 986777864}
   - component: {fileID: 986777863}
   - component: {fileID: 986777862}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Room_2_Floor_Corner_Out (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48062,7 +48063,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 14135
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -68152,7 +68153,6 @@ GameObject:
   - component: {fileID: 1556912753}
   - component: {fileID: 1556912748}
   - component: {fileID: 1556912747}
-  - component: {fileID: 1556912749}
   - component: {fileID: 1556912751}
   m_Layer: 13
   m_Name: kangarooPref_1
@@ -68177,7 +68177,7 @@ NavMeshAgent:
   m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
-  m_AutoRepath: 1
+  m_AutoRepath: 0
   m_Height: 1.75
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
@@ -68194,17 +68194,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.69, y: 1.61, z: 1}
   m_Center: {x: 0, y: -0.18, z: 0}
---- !u!114 &1556912749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1556912746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 959be7a51c4f2dc439f5eac3315cf10b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1556912750
 Transform:
   m_ObjectHideFlags: 0
@@ -68213,7 +68202,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1556912746}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -5.97, y: 1.327, z: 11.94}
+  m_LocalPosition: {x: -5.97, y: 1.4, z: 11.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1407004665}
@@ -68243,7 +68232,7 @@ MonoBehaviour:
   trancparencyMat: {fileID: 2100000, guid: 220b3d054ff5f30499070b6d4c95191b, type: 2}
   lookRadius: 3
   eyes: {fileID: 1124343109}
-  invisibleTime: 6
+  invisibleTime: 2
   coolDown: 10
   wanderRadius: 10
 --- !u!95 &1556912753
@@ -78824,8 +78813,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1795194231}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -23, y: -16.850273, z: -14.3}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -23, y: -18.398273, z: -14.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1291090008}
@@ -79126,8 +79115,8 @@ Transform:
   - {fileID: 1911959099}
   - {fileID: 838173869}
   - {fileID: 1904431945}
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_Father: {fileID: 314298105}
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1796252366
 GameObject:

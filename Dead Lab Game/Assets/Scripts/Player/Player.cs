@@ -150,7 +150,7 @@ public class Player : MonoBehaviour
         List<Kangaroo> visibleEnemies = eyes.FindVisibleTargets();
         Debug.Log(visibleEnemies.Count);
         foreach (Kangaroo kangaroo in visibleEnemies) {
-            kangaroo.SetInvisibility(true);
+            kangaroo.playerSee = true;
         }
     }
 
