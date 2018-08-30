@@ -40610,7 +40610,7 @@ Transform:
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 44
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &879101841
 Prefab:
@@ -87692,8 +87692,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753637ea496df59448c17c3100da0b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleLoop: {fileID: 8300000, guid: 471619e1e48ef794a8a771ff27efb5da, type: 3}
-  battleEnd: {fileID: 8300000, guid: b19b0392f62343f45bbb38b43cfe9fa2, type: 3}
+  battleLoopSound: {fileID: 8300000, guid: 471619e1e48ef794a8a771ff27efb5da, type: 3}
+  battleEndSound: {fileID: 8300000, guid: b19b0392f62343f45bbb38b43cfe9fa2, type: 3}
+  deathSound: {fileID: 8300000, guid: f6a47bc4a7bbe294b82c42e6dd566fc1, type: 3}
 --- !u!82 &1895645692
 AudioSource:
   m_ObjectHideFlags: 0
@@ -87800,7 +87801,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 43
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1896583686
 GameObject:
