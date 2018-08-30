@@ -7,6 +7,8 @@ public class HealerForTask : Healer
 
 	private UseHealerTask useHealerTask;
 
+	public Kangaroo[] kangaroos;
+
     public override void Interract()
     {
         base.Interract();
@@ -17,6 +19,11 @@ public class HealerForTask : Healer
         {
             fht.addSubTask(useHealerTask);
         }
+
+		for (int i = 0; i < kangaroos.Length; i++)
+		{
+			kangaroos[i].gameObject.SetActive(true);
+		}
     }
 
 	public override void OnUpdate()

@@ -8,12 +8,11 @@ public class DoorScript : MonoBehaviour
 
     private Animator _animator;
 
-    public bool locked {get; set;}
+    public bool locked;
 
     // Use this for initialization
     void Start()
     {
-        locked = false;
         _animator = GetComponent<Animator>();
 		OnStart();
     }

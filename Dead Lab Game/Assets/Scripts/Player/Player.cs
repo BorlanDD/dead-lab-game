@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
         usingWeapon = null;
         player = this;
         Reloading = false;
-        Health = 0.1f;
+        Health = 1f;
     }
     public static Player GetInstance()
     {
@@ -395,5 +395,20 @@ public class Player : MonoBehaviour
         this.healer = healer;
 
         animator.SetTrigger("Use_Healer");
+    }
+
+    public void GetDamage(float damage) {
+        if (Health >= 0.01f) {
+            Health -= damage;
+        }
+
+        if (Health <= 0) {
+            Die();
+        }
+    }
+
+    private void Die() {
+        Debug.Log("Чувак помер!");
+        Debug.Break();
     }
 }
