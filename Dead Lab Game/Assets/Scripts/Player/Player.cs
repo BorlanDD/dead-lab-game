@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        
         if (!Generator.GetInstance().enabled && !farted)
         {
             audioSource.PlayOneShot(fartSound);
@@ -148,7 +148,6 @@ public class Player : MonoBehaviour
         }
 
         List<Kangaroo> visibleEnemies = eyes.FindVisibleTargets();
-        Debug.Log(visibleEnemies.Count);
         foreach (Kangaroo kangaroo in visibleEnemies) {
             kangaroo.playerSee = true;
         }
@@ -398,17 +397,16 @@ public class Player : MonoBehaviour
     }
 
     public void GetDamage(float damage) {
-        if (Health >= 0.01f) {
+        if (Health > 0f) {
             Health -= damage;
         }
-
-        if (Health <= 0) {
+        else {
             Die();
         }
     }
 
     private void Die() {
-        Debug.Log("Чувак помер!");
+        Debug.Log("Dude, you died!");
         Debug.Break();
     }
 }

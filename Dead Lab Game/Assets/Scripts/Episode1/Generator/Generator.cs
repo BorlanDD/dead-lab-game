@@ -45,6 +45,7 @@ public class Generator : InteractionObject
 
     private bool isBroken;
     public void BrokeGenerator() {
+        _source.spatialBlend = 0f;
         _source.PlayOneShot(generatorBrokenSound);
         isBroken = true;
     }
@@ -111,6 +112,7 @@ public class Generator : InteractionObject
             battery.gameObject.SetActive(true);
 
             FindGeneratorTask.GetInstance().OnTaskFinish();
+            _source.spatialBlend = 1f;
             _source.loop = true;
             _source.clip = generatorWorkingSound;
             _source.Play();

@@ -54,7 +54,7 @@ public class Kangaroo : Enemy
         base.OnUpdate();
 
         bool isSeePlayer = eyes.IsSeePlayer();
-        if (playerSee && !invisibled && reloaded && isSeePlayer)
+        if (playerSee && !invisibled && reloaded && (isSeePlayer || shooted))
         {
             BecomeInvisible();
         }
@@ -85,7 +85,7 @@ public class Kangaroo : Enemy
 
 
 
-        if (isSeePlayer)
+        if (isSeePlayer || shooted)
         {
             if (Vector3.Distance(transform.position, player.transform.position) <= navMeshAgent.stoppingDistance)
             {
@@ -119,6 +119,7 @@ public class Kangaroo : Enemy
         }
 
         prevKangarooPosition = transform.position;
+        shooted = false;
     }
 
     public bool playerSee { get; set; }
@@ -137,6 +138,8 @@ public class Kangaroo : Enemy
 
     private float current = 0f;
     private float delay = 1f;
+
+    public bool shooted {get; set;}
     private void BecomeInvisible()
     {
         if (current >= delay)

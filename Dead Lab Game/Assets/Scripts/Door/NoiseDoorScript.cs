@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NoiseDoorScript : DoorScript
 {
@@ -8,6 +9,7 @@ public class NoiseDoorScript : DoorScript
 
     [SerializeField] protected AudioClip openDoor;
     [SerializeField] protected AudioClip closeDoor;
+    
 
     protected AudioSource _source;
 
