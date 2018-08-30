@@ -1755,7 +1755,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 0}
   head: {fileID: 137847640931459226}
   body: {fileID: 137738317010413150}
-  defaultMat: {fileID: 2100000, guid: 88d5a77a033429c44b219deb960d5ef8, type: 2}
+  defaultMat: {fileID: 2100000, guid: 277e2a883fcfe864f9874e6c6be0ed97, type: 2}
   trancparencyMat: {fileID: 2100000, guid: 220b3d054ff5f30499070b6d4c95191b, type: 2}
   lookRadius: 3
   eyes: {fileID: 114519672498705544}
@@ -1857,7 +1857,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 88d5a77a033429c44b219deb960d5ef8, type: 2}
+  - {fileID: 2100000, guid: 277e2a883fcfe864f9874e6c6be0ed97, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1937,7 +1937,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 88d5a77a033429c44b219deb960d5ef8, type: 2}
+  - {fileID: 2100000, guid: 277e2a883fcfe864f9874e6c6be0ed97, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
