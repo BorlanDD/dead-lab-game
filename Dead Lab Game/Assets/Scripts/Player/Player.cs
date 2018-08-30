@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         
+        //Debug.Log(GameObject.FindGameObjectWithTag("NavMesh").GetComponent<UnityEngine.AI.NavMeshSurface>().)
         if (!Generator.GetInstance().enabled && !farted)
         {
             audioSource.PlayOneShot(fartSound);
