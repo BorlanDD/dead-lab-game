@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 114221144147598900}
   - component: {fileID: 65573344656720238}
   - component: {fileID: 82185528153660744}
+  - component: {fileID: 65372480830710802}
   m_Layer: 9
   m_Name: AK-47
   m_TagString: Weapon
@@ -860,6 +861,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1792244528809648}
   m_Mesh: {fileID: 4300000, guid: 764da5cd857995543a06c28113d6154a, type: 3}
+--- !u!65 &65372480830710802
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123330253521634}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65573344656720238
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -999,6 +1012,7 @@ MonoBehaviour:
   targetTag: Player
   soundShot: {fileID: 8300000, guid: b4f8b4bd24553d24f9c54242400d7b6a, type: 3}
   soundClick: {fileID: 8300000, guid: 92718854ef8eba94386844f3f451fdc8, type: 3}
+  soundReloading: {fileID: 0}
   audioSource: {fileID: 0}
   bulletPrefab: {fileID: 54314726868147566, guid: f573786f0e1b7104baea46ba389f73c8,
     type: 2}

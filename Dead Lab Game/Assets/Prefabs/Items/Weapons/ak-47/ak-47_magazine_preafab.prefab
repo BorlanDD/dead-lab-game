@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 95408395689928234}
   - component: {fileID: 65168771566184046}
   - component: {fileID: 114973037184886592}
+  - component: {fileID: 65852717279442474}
   m_Layer: 9
   m_Name: ak-47_magazine_preafab
   m_TagString: Untagged
@@ -98,6 +99,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.428045, y: 1.5955935, z: 1.4095755}
   m_Center: {x: -0.022809505, y: -1.1494413e-14, z: -0.03237499}
+--- !u!65 &65852717279442474
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1335461089047142}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.316605, y: 0.077118, z: 0.39015}
+  m_Center: {x: -0.022809505, y: 0, z: -0.032375}
 --- !u!95 &95408395689928234
 Animator:
   serializedVersion: 3

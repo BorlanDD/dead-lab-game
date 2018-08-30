@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 65146373505832654}
   - component: {fileID: 114219897563890904}
   - component: {fileID: 114255794499590578}
+  - component: {fileID: 65215722675313266}
   m_Layer: 9
   m_Name: HealerForTask
   m_TagString: Untagged
@@ -99,6 +100,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65215722675313266
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1935456609340330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.046814002, y: 0.046814, z: 0.42471206}
+  m_Center: {x: 0, y: -2.9098856e-16, z: -0.081906006}
 --- !u!95 &95531002019774032
 Animator:
   serializedVersion: 3
@@ -133,6 +146,7 @@ MonoBehaviour:
   healthCountPerPeriod: 0
   effectCount: 0
   effectPeriodTime: 0
+  kangaroos: []
 --- !u!114 &114255794499590578
 MonoBehaviour:
   m_ObjectHideFlags: 1

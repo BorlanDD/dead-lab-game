@@ -17,12 +17,15 @@ public class FPSInput : MonoBehaviour
     private Player player;
     private CharacterController _charController;
 
+    private Transform greenPoint;
+
 
     // Use this for initialization
     void Start()
     {
         intractableLayerMask = 1 << 9;
         player = GetComponent<Player>();
+        greenPoint = GreenPoint.GetInstance().transform;
 
         _charController = GetComponent<CharacterController>();
     }
@@ -149,7 +152,7 @@ public class FPSInput : MonoBehaviour
         float height = cam.pixelHeight / 2;
         Ray ray = cam.ScreenPointToRay(new Vector3(width, height, 0));
 
-        if (Physics.Raycast(ray.origin, ray.direction, out hit, 2, intractableLayerMask))
+        if (Physics.Raycast(ray.origin, ray.direction, out hit, 2, intractableLayerMask, QueryTriggerInteraction.Ignore))
         {
             InteractionObject io = hit.transform.GetComponent<InteractionObject>();
             if (io.targetInto && !io.locked)
@@ -159,16 +162,21 @@ public class FPSInput : MonoBehaviour
                 {
                     io.Interract();
                 }
+                greenPoint.gameObject.SetActive(true);
+                greenPoint.position = hit.point;
+                greenPoint.LookAt(Player.GetInstance().transform);
             }
             else
             {
                 HintUI.GetInstance().InteractionHintUIState(false);
+                greenPoint.gameObject.SetActive(false);
             }
+            // Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.red);
         }
         else if (HintUI.GetInstance().hintInteractionUI.activeSelf)
         {
             HintUI.GetInstance().InteractionHintUIState(false);
+            greenPoint.gameObject.SetActive(false);
         }
-        //Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.red);
     }
 }
