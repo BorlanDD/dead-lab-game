@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
         Enemy enemy = other.transform.GetComponentInParent<Enemy>();
         other.transform.gameObject.GetComponent<Kangaroo>().shooted = true;
         enemy.health -= damage;
-        Debug.Log("Health: " + enemy.health);
+        //Debug.Log("Health: " + enemy.health);
         if (enemy.health <= 0)
         {
             enemy.Die();

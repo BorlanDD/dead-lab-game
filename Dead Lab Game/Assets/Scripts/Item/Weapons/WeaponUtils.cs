@@ -28,7 +28,6 @@ public class WeaponUtils
         IList<Item> magazines = inventory.GetItemByType(ItemType.Magazine);
         IList<Magazine> needMagazines = new List<Magazine>();
 
-        int count = 0;
         Magazine magazine;
         for (int i = 0; i < magazines.Count; i++)
         {

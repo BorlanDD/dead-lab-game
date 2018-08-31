@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioClip battleEndSound;
     [SerializeField] private AudioClip deathSound;
-	
+
     public bool BattleLoopPlay { get; set; }
     public bool BattleEndPlay { get; set; }
 	public bool DeathSoundPlay {get; set;}
@@ -46,9 +46,11 @@ public class AudioManager : MonoBehaviour
 		if (DeathSoundPlay) {
 			audioSource.Stop();
 			if (Play(deathSound)) {
+				Generator.GetInstance()._source.Stop();
 				DeathSoundPlay = false;
 				BattleEndPlay = false;
 				BattleLoopPlay = false;
+				enabled = false;
 			}
 		}
 

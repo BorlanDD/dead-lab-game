@@ -106,7 +106,7 @@ public class FPSInput : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.H) && !player.Reloading)
         {
             player.UseHealer((Healer)player.inventory.GetItem(10));
         }

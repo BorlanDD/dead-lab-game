@@ -28,9 +28,7 @@ public class Generator : InteractionObject
 
     [SerializeField] protected AudioClip generatorWorkingSound;
     [SerializeField] protected AudioClip generatorBrokenSound;
-
-    [SerializeField] protected AudioClip horror;
-    protected AudioSource _source;
+    public AudioSource _source;
 
     public override void OnStart()
     {

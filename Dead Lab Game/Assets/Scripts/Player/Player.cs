@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] private AudioClip soundFirstLeg;
     [SerializeField] private AudioClip soundSecondLeg;
-    [SerializeField] private AudioClip fartSound;
 
     [SerializeField] private AudioClip breath;
     [SerializeField] private AudioClip breathRun;
@@ -44,8 +43,6 @@ public class Player : MonoBehaviour
     public bool IsInMotion { get; set; }
 
     private float eps = 0.0001f;
-
-    private bool farted = false;
 
     public bool Reloading;
 
@@ -383,6 +380,7 @@ public class Player : MonoBehaviour
 
     public void UseHealer(Healer healer)
     {
+        
         if (healer == null)
         {
             return;
